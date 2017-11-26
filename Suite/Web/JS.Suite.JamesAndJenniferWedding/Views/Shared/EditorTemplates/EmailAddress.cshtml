@@ -1,0 +1,15 @@
+﻿@model string
+
+@{
+    //http://bradwilson.typepad.com/blog/2009/10/aspnet-mvc-2-templates-part-3-default-templates.html
+    //http://aspnetwebstack.codeplex.com/SourceControl/latest#src/System.Web.Mvc/Html/DefaultEditorTemplates.cs
+    
+    FieldData fieldData = (FieldData)Html.ViewData["FieldData"];
+
+    fieldData.HtmlAttributes.Add("type", "email");
+
+    fieldData.HtmlAttributes.AddClass("text-box");
+    fieldData.HtmlAttributes.AddClass("single-line");
+}
+
+@Html.TextBox(String.Empty, Html.ViewContext.ViewData.TemplateInfo.FormattedModelValue, fieldData.HtmlAttributes)

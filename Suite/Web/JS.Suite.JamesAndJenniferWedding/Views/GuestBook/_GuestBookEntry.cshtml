@@ -1,0 +1,6 @@
+﻿@model JS.Suite.DataAbstraction.JSWedding.WeddingComment
+
+<article>
+    <h2 class="byLine">@Model.UserName on @Html.DisplayFor(m => m.InsertedOn, new { @class = "mobileBlock" })</h2>
+    <p>@Model.Comment</p>
+</article>

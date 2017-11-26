@@ -1,0 +1,24 @@
+﻿@model JS.Suite.DataAbstraction.JSWedding.WeddingPartyMember
+
+@{
+    string name = JS.Suite.BusinessLogic.JSWedding.WeddingPartyMemberBusinessManager.Current.GetFullName(Model);
+}
+<div class="tabletFloatLeft">
+    @Html.Partial("_WeddingPartyMemberSummary", Model)
+</div>
+<div class="detail">
+    <h2 class="mobileHide">@name</h2>
+
+    @if (!String.IsNullOrEmpty(Model.UDF3))
+    {
+        <span class="relationship info small">@Model.UDF3</span>
+    }
+    @if (!String.IsNullOrEmpty(Model.Biography))
+    {
+        @Html.Raw(Model.Biography)
+        if (!String.IsNullOrEmpty(Model.BiographyAuthor))
+        {
+            <span class="author">- @Model.BiographyAuthor</span>
+        }
+    }
+</div>

@@ -1,0 +1,57 @@
+﻿@model JS.Suite.Hub.Areas.Support.Models.ApplicationLog.DetailModalViewModel
+
+@using JS.Suite.DataAbstraction.JSSupport
+
+@{
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+
+@section ModalTitle {Application Log Detail}
+
+@using (Html.FieldGroup(f => f))
+{
+    @Html.FieldFor(m => m.ApplicationLog.MessageDisplay).AsDisabled().SetFieldWidth(FieldSpans.Full)
+
+    @Html.FieldFor(m => m.ApplicationLog.Subject).AsDisabled()
+
+    @Html.FieldFor(m => m.ApplicationLog.MessageTypeText).AsDisabled()
+
+    @Html.FieldFor(m => m.ApplicationLog.TrackingGuid).AsDisabled().SetFieldWidth(FieldSpans.Double)
+
+    @Html.FieldFor(m => m.ApplicationLog.JSUserName).AsDisabled()
+
+    @Html.FieldFor(m => m.ApplicationLog.ApplicationName).AsDisabled()
+
+    @Html.FieldFor(m => m.ApplicationLog.InsertedOnDisplay).AsDisabled()
+
+    @Html.FieldFor(m => m.ApplicationLog.StackTrace).AsDisabled().SetFieldWidth(FieldSpans.Full)
+}
+
+@if (Model.AdditionalApplicationLogs.Any())
+{
+    <hr/>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>Additional Application Logs</h4></div>
+        <ul class="list-group">
+            @foreach (var item in Model.AdditionalApplicationLogs)
+            {
+                <li class="list-group-item"><a href="@Url.Action("Index", new { TrackingGuid = item.TrackingGuid})">@item.Message</a></li>
+            }
+        </ul>
+
+    </div>
+}
+
+@if (Model.TrafficLogRequest != null)
+{
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>Traffic Log</h4></div>
+        <div class="panel-body">
+            <a href="@Url.Action("Index", "TrafficLog", new { TrackingGuid = Model.TrafficLogRequest.TrackingGuid })">@Model.TrafficLogRequest.RequestedUrl</a>
+        </div>
+
+    </div>
+}

@@ -1,0 +1,34 @@
+﻿@model JS.Suite.Hub.Models.Account.RegisterViewModel
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h2>@Localization.CreateANewAccount</h2>
+
+    @Html.ValidationSummaryAlert()
+
+    using (Html.FieldGroup(g => g))
+    {
+        @Html.FieldFor(m => m.UserName).WithFieldIcon(FAIcons.User).WithCustomLayoutClasses("col-sm-6", "col-sm-offset-3")
+        @Html.FieldFor(m => m.NewPassword).WithFieldIcon(FAIcons.Key).WithCustomLayoutClasses("col-sm-6", "col-sm-offset-3")
+        @Html.FieldFor(m => m.ConfirmPassword).WithFieldIcon(FAIcons.Key).WithCustomLayoutClasses("col-sm-6", "col-sm-offset-3")
+
+    }
+
+    using (Html.ButtonGroup(g => g))
+    {
+        @Html.Button(Localization.Register).WithCustomLayoutClasses("col-sm-4", "col-sm-offset-4").AsSubmit()
+    }
+
+    using (Html.TextGroup(g => g))
+    {
+        <div class="col-xs-12 loginMessage">
+            <p>@Html.ActionLink(Localization.BackToTheLoginScreen, "Login")</p>
+        </div>
+    }
+}

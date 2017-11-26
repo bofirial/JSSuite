@@ -1,0 +1,35 @@
+﻿@model CollectionGroup
+@using JS.Suite.DataAbstraction.JSSuite
+
+@using (Html.BeginForm("MyCollectionsGridData", "CollectionGroup", new { area = "Collections" }, FormMethod.Post, new { role = "form", @class = "gridForm" }))
+{
+    <h2>@Localization.MyCollections</h2>
+
+    @(Html.Grid(Model)
+        .Columns(columns =>
+        {
+            columns.Add(c => c.Name).WithTemplate(template => String.Format("<a href=\"{1}\">{0}</a>", 
+                template.Property(c => c.Name),
+                Url.Action("Collection", "CollectionGroup", new { id = template.Property(c => c.CollectionGroupId) })));
+            columns.Add(c => c.Note).CollapseLevel(GridColumnCollapseLevels.Tablet).Label("Description");
+            columns.Add(c => c.JSUserName).Label(Localization.UserName).Sortable(false);
+            columns.Add(c => c.NumberOfCollectionItems).CollapseLevel(GridColumnCollapseLevels.Tablet).Label(Localization.TotalCollectionItems).Sortable(false);
+            columns.Add(c => c.CollectionGroupId)
+                .Label(String.Empty)
+                .Sortable(false)
+                .WithTemplate(template => 
+                    String.Format("<a data-modal-link=\"{1}\" href=\"javascript:void(0)\">{0}</a>",
+                        Html.Icon(FAIcons.Gear).ToHtmlString(),
+                        Url.Action("AddEditModal", new
+                        {
+                            collectionGroupId = template.Property(c => c.CollectionGroupId)
+                        })));
+        })
+        .DefaultSort("Name", System.Data.SqlClient.SortOrder.Ascending)
+    )
+    
+    using (Html.ButtonGroup(g => g))
+    {
+        @Html.Button(Localization.CreateNewCollection).Color(BrandColors.Primary).WithDataAttribute("modal-link", Url.Action("AddEditModal"))
+    }
+}

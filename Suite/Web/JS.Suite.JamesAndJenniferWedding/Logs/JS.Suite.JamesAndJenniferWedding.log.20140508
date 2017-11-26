@@ -1,0 +1,29 @@
+2014-05-08 21:12:46,208 [6] DEBUG –  * SQL Database Access * Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False
+
+************************************************************************************************
+
+
+2014-05-08 21:14:17,512 [6] DEBUG – 
+ * SQL Database Access * Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False
+
+************************************************************************************************
+
+
+2014-05-08 21:16:35,787 [39] DEBUG –  - SQL Database Access - Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False
+
+************************************************************************************************
+
+
+2014-05-08 21:18:48,679 [39] DEBUG – SQL Database Access - Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False
+
+************************************************************************************************
+
+
+2014-05-08 21:37:07,376 [6] DEBUG – SQL Database Access - 
+Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False
+2014-05-08 21:38:21,643 [47] DEBUG – SQL Database Access - 
+Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False
+2014-05-08 21:38:22,682 [47] DEBUG – SQL Database Access - 
+Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False
+     2014-05-08 21:40:29,615 [47] DEBUG – SQL Database Access - Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False
+     2014-05-08 21:40:33,631 [49] DEBUG – SQL Database Access - Executing SQL Statement: "SELECT UserName, Email, Comment, WeddingCommentId, HiddenFlag, WebSiteId, InsertedBy, InsertedOn, UpdatedBy, UpdatedOn FROM WeddingComment WHERE WebSiteId = @WebSiteId AND HiddenFlag = @HiddenFlag" with Parameters: WebSiteId = 1, HiddenFlag = False

@@ -1,0 +1,33 @@
+﻿@model CollectionGroup
+@using JS.Suite.DataAbstraction.JSSuite
+
+@using (Html.BeginForm("MyCollectionItemsGridData", "CollectionItem", 
+    new { area = "Collections", CollectionGroupId = Model.CollectionGroupId }, 
+    FormMethod.Post, new { role = "form", @class = "gridForm" }))
+{
+    <h2>@Model.Name</h2>
+
+    @(Html.Grid(new CollectionItem())
+        .Columns(columns =>
+        {
+            columns.Add(c => c.Name).WithTemplate(template =>
+                String.Format("<a data-modal-link=\"{1}\" href=\"javascript:void(0)\">{0}</a>",
+                    template.Property(c => c.Name),
+                    Url.Action("AddEditModal", "CollectionItem", new
+                    {
+                        collectionItemId = template.Property(c => c.CollectionItemId),
+                        collectionGroupId = Model.CollectionGroupId
+                    })));
+            columns.Add(c => c.Note).CollapseLevel(GridColumnCollapseLevels.Phone).Label("Description");
+        })
+        .DefaultSort("Name", System.Data.SqlClient.SortOrder.Ascending)
+    )
+
+    using (Html.ButtonGroup(g => g))
+    {
+        @Html.Button(Localization.CreateNewItem).Color(BrandColors.Primary).WithDataAttribute("modal-link", 
+            Url.Action("AddEditModal", "CollectionItem", new { collectionGroupId = Model.CollectionGroupId }))
+    
+        <a href="@Url.Action("List", "CollectionGroup")" class="btn btn-default">@Localization.BackToMyCollections</a>
+    }
+}

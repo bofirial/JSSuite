@@ -1,0 +1,212 @@
+﻿
+@import "../References.less";
+    
+header {
+    //margin-bottom: 10px;
+
+    .content {
+        overflow: auto;
+        text-align: center;
+
+        .backgroundContainer {
+
+            div {
+                width: 330px;
+                height: 332px;
+                background: url('/Content/Images/Engagement Photo 4.jpg');
+                -moz-background-size: 100% 100%;
+                background-size: 100% 100%;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+
+        h1 {
+            &:before {
+                clear: both;
+                content: " ";
+                display: block;
+            }
+
+            margin: 0;
+            padding: 10px;
+            color: @headerText;
+            font-size: 24px;
+            letter-spacing: 2px;
+            line-height: normal;
+            //font-family: 'Libre Baskerville', serif;
+            font-weight: normal;
+            display: block;
+            text-align: center;
+            background-color: @title;
+            background-image: -webkit-linear-gradient( @ltTitle, @title , @ltTitle );
+            background-image: linear-gradient(90deg , @ltTitle, @title , @ltTitle );
+            //-moz-background-size: 15px 15px;
+            //-o-background-size: 15px 15px;
+            //-webkit-background-size: 15px 15px;
+            //background-size: 15px 15px;
+            //-webkit-box-shadow: -36px -31px 0 -22px @background, 31px -31px 0 -22px @background, -36px 31px 0 -22px @background, 36px 31px 0 -22px @background;
+            //box-shadow: -36px -31px 0 -22px @background, 31px -31px 0 -22px @background, -36px 31px 0 -22px @background, 36px 31px 0 -22px @background;
+            position: relative;
+            top: -75px;
+        }
+
+        .postWeddingMessage {
+            position: absolute;
+            display: block;
+            font-weight: bold;
+            font-size: 32px;
+            text-align: center;
+            word-spacing: 10px;
+            color: white;
+            left: 0;
+            right: 0;
+            margin: -260px auto 0;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: @dkPurple;
+            text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+        }
+
+        .navigation {
+            list-style: none;
+            margin-top: -65px;
+            padding: 0;
+            background-color: @background;
+            border-bottom: 1px solid @navText;
+            border-top: 1px solid @navText;
+            font-size: 0;
+            text-align: center;
+
+            li {
+                color: @navText;
+                text-decoration: none;
+                //font-family: 'Libre Baskerville', serif;
+                font-size: 16px;
+
+                a {
+                    color: @navText;
+                    text-decoration: none;
+                    display: inline-block;
+                    padding: 10px;
+                    margin: 4px;
+
+                    &:hover {
+                        color: @hover;
+                    }
+
+                    &.current {
+                        color: @active;
+
+                        &:hover {
+                            color: @hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: @tabletWidth) {
+
+    header .content {
+        .backgroundContainer {
+            display: inline-block;
+
+            div {
+                display: inline-block;
+                margin: 0;
+                margin-left: 30px;
+            }
+
+            &:before {
+                content: " ";
+                background: url('/Content/Images/Engagement Photo 5.jpg');
+                -moz-background-size: 100% 100%;
+                background-size: 100% 100%;
+                width: 330px;
+                height: 332px;
+                display: inline-block;
+            }
+        }
+
+        h1 {
+            font-size: 36px;
+            //-webkit-box-shadow: -36px -41px 0 -29px @background, 36px -41px 0 -29px @background, -36px 41px 0 -29px @background, 36px 41px 0 -29px @background;
+            //box-shadow: -36px -41px 0 -29px @background, 36px -41px 0 -29px @background, -36px 41px 0 -29px @background, 36px 41px 0 -29px @background;
+        }
+        
+        .postWeddingMessage {
+                margin-top: -210px;
+        }
+
+        .navigation li {
+            display: inline-block;
+            font-size: 14px;
+
+            a {
+                margin: 4px 0;
+                padding: 10px 8px;
+            }
+
+            &:after {
+                content: "•";
+                color: @navText;
+            }
+
+            &:last-child:after {
+                content: "";
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 855px) {
+
+    header .content .navigation li {
+        font-size: 16px;
+
+        a {
+            margin: 4px;
+            padding: 10px;
+        }
+    }
+}
+
+
+@media only screen and (min-width: @desktopWidth) {
+
+    header .content {
+
+        .backgroundContainer {
+            display: block;
+
+            div {
+                display: block;
+                float: right;
+            }
+
+            &:before {
+                display: block;
+                float: left;
+            }
+
+            &:after {
+                content: " ";
+                background: url('/Content/Images/Engagement Photo 3.jpg');
+                -moz-background-size: 100% 100%;
+                background-size: 100% 100%;
+                width: 330px;
+                height: 332px;
+                margin: 4px auto;
+                display: block;
+            }
+        }
+
+        .postWeddingMessage {
+                margin-top: -225px;
+                font-size: 48px;
+            }
+    }
+}

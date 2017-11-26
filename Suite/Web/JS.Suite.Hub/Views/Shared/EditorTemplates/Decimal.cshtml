@@ -1,0 +1,18 @@
+﻿@model string
+
+@{
+    //http://bradwilson.typepad.com/blog/2009/10/aspnet-mvc-2-templates-part-3-default-templates.html
+    //http://aspnetwebstack.codeplex.com/SourceControl/latest#src/System.Web.Mvc/Html/DefaultEditorTemplates.cs
+    
+    FieldData fieldData = (FieldData)Html.ViewData["FieldData"];
+
+    fieldData.HtmlAttributes.AddClass("text-box");
+    fieldData.HtmlAttributes.AddClass("single-line");
+
+    if (Html.ViewContext.ViewData.TemplateInfo.FormattedModelValue == Html.ViewContext.ViewData.ModelMetadata.Model)
+    {
+        Html.ViewContext.ViewData.TemplateInfo.FormattedModelValue = String.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:0.00}", Html.ViewContext.ViewData.ModelMetadata.Model);
+    }
+}
+
+@Html.TextBox(String.Empty, Html.ViewContext.ViewData.TemplateInfo.FormattedModelValue, fieldData.HtmlAttributes)

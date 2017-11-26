@@ -1,0 +1,61 @@
+﻿@model JS.Suite.Hub.Models.Account.ExternalLoginViewModel
+
+@using Microsoft.Owin.Security
+@using JS.Core.Foundation.ErrorHandling
+
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0)
+    {
+        throw new CoreException("Missing Configuration", "External Login Provider Configuration is not available.");
+    }
+    else
+    {
+        using (Html.BeginForm(Model.Action, "Account", Model.RouteValues, FormMethod.Post,
+            new
+            {
+                role = "form"
+            }))
+        {
+            @Html.AntiForgeryToken()
+            using (Html.ButtonGroup(g => g.WithClass("socialLoginList")))
+            {
+                foreach (AuthenticationDescription p in loginProviders)
+                {
+                    FAIcons icon;
+
+                    switch (p.AuthenticationType)
+                    {
+                        case "Google":
+                            icon = FAIcons.Google;
+                            break;
+                        case "Facebook":
+                            icon = FAIcons.Facebook;
+                            break;
+                        case "Twitter":
+                            icon = FAIcons.Twitter;
+                            break;
+                        default:
+                            icon = FAIcons.User;
+                            break;
+                    }
+
+                    if (Model.LoginProviders != null && Model.LoginProviders.FirstOrDefault(lp => lp.LoginProvider == p.AuthenticationType) == null)
+                    {
+                        continue;
+                    }
+
+                    @(Html.Button(
+                        String.Join("", 
+                            Html.Icon(icon).FixedWidth(false).ToHtmlString(), 
+                            String.Format(Model.ButtonTextFormat, p.AuthenticationType)))
+                        .WithCustomLayoutClasses("col-sm-4")
+                        .WithTitle(String.Format(Model.ButtonHoverFormat, p.Caption))
+                        .WithNameValue("provider", p.AuthenticationType)
+                        .AsSubmit())
+                }
+            }
+        }
+    }
+}
+

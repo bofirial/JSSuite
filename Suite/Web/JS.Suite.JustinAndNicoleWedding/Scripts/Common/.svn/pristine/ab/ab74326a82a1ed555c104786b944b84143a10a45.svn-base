@@ -1,0 +1,90 @@
+﻿/*******************************************
+ * Jumping Salamander Grid Module
+ *******************************************/
+
+(function (window, JS, $) {
+    if (JS) {
+        function Grid() {
+
+            var self = this,
+                gridDataUrl;
+
+            this.initializeRegion = function ($region) {
+
+                $('.grid', $region).each(function(i, grid) {
+
+                    var $grid = $(grid),
+                        $gridForm = $grid.closest('form.gridForm'),
+                        gridDataUrl = $gridForm.attr('action'),
+                        footable;
+
+                    function getGridRow(rowObj)
+                    {
+                        var $row = $('<tr></tr>');
+
+                        $grid.find('th').each(function (i, th) {
+                            var $th = $(th),
+                                propName = $th.data('propertyName'),
+                                propNameParts = propName.split('.'),
+                                propValue = rowObj;
+
+                            for (var j in propNameParts) {
+                                propValue = propValue[propNameParts[j]];
+                            }
+
+                            $row.append($('<td>' + propValue + '</td>'));
+                        });
+
+                        return $row;
+                    }
+
+                    function setGridData(data) {
+                        var currentRows = $grid.find('tbody > tr');
+
+                        footable.removeRow(currentRows);
+
+                        for (var i in data) {
+                            var $row = getGridRow(data[i]);
+
+                            footable.appendRow($row);
+                        }
+                    }
+
+                    $grid.footable();
+
+                    footable = $grid.data('footable');
+
+                    if (gridDataUrl) {
+                        $.ajax({
+                            url: gridDataUrl,
+                            type: 'POST',
+                            data: $grid.data('gridInitialFilter'),
+                            success: setGridData
+                        });
+                    }
+                    else {
+                        throw "No Grid Data Url Found.  Are you missing a Grid Form?"
+                    }
+
+                    $gridForm.submit(function (e) {
+                        e.preventDefault();
+
+                        $.ajax({
+                            url: gridDataUrl,
+                            type: 'POST',
+                            data: $gridForm.serialize(),
+                            success: setGridData
+                        });
+                    });
+                });
+ 
+            };
+        }
+
+        JS.registerModule("controls.grid", Grid);
+    }
+    else {
+        throw "JS Core Module Missing.  Unable to register the Grid Module";
+    }
+
+})(window, JS, $);

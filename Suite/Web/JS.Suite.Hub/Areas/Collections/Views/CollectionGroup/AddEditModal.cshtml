@@ -1,0 +1,34 @@
+﻿@model CollectionGroup
+@using JS.Suite.DataAbstraction.JSSuite
+
+@{
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+
+@section ModalTitle {Collection Group}
+
+@Html.Alert((string)ViewBag.StatusMessage, AlertTypes.Success)
+
+@using (Html.BeginForm("AddEditModal", "CollectionGroup", new { area = "Collections" }, FormMethod.Post, new { role = "form" , id="addEditCollectionGroup"}))
+{
+    using (Html.FieldGroup(f => f))
+    {
+        @Html.FieldFor(m => m.CollectionGroupId).AsHidden()
+        
+        @Html.FieldFor(m => m.Name)
+        @Html.FieldFor(m => m.UDFShortText1Name)
+        @Html.FieldFor(m => m.UDFShortText2Name)
+        @Html.FieldFor(m => m.UDFShortText3Name)
+        @Html.FieldFor(m => m.UDFLongText1Name)
+        @Html.FieldFor(m => m.UDFDateTime1Name)
+        @Html.FieldFor(m => m.Note).SetFieldWidth(FieldSpans.Double)
+    }
+}
+
+@section FooterButtons {
+    <button data-modal-save-form="addEditCollectionGroup" type="button" class="btn btn-primary">Save</button>
+    @if (ViewBag.AllowDelete == true)
+    {
+        <button data-modal-close="@Url.Action("Delete", "CollectionGroup", new { collectionGroupId = Model.CollectionGroupId })" type="button" class="btn btn-danger">Delete</button>
+    }
+}

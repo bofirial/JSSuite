@@ -1,0 +1,11 @@
+﻿@model object
+
+@{
+    //http://bradwilson.typepad.com/blog/2009/10/aspnet-mvc-2-templates-part-3-default-templates.html
+    //http://aspnetwebstack.codeplex.com/SourceControl/latest#src/System.Web.Mvc/Html/DefaultEditorTemplates.cs
+    //CONSIDER: The MVC Base Editor Template has some logic for Hidden Inputs that have surrounding HTML.
+    
+    FieldData fieldData = (FieldData)Html.ViewData["FieldData"];
+}
+
+@Html.Hidden(String.Empty, Model, fieldData.HtmlAttributes)

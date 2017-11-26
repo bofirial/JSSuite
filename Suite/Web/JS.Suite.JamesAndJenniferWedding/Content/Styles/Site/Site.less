@@ -1,0 +1,119 @@
+﻿
+@import "../References.less";
+
+.content {
+    margin: auto;
+}
+
+a img {
+    border: none;
+}
+
+a:active {
+    background-color: transparent;
+}
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+html, body {
+	height: 100%;
+    min-width: 330px;
+	margin: 0;
+    color: @textBase;
+    font-family: @fontFamilyBase;
+    line-height: 1.4;
+}
+
+section {
+    padding: 0 8px 20px;
+    text-align: center;
+}
+
+section, .clearFix {
+    &:after {
+        content: ".";
+        visibility: hidden;
+        display: block;
+        height: 0;
+        clear: both;
+    }
+}
+
+
+h2, h3, h4 {
+    margin: 12px 0 4px;
+}
+
+.address {
+    margin-top: 0;
+    color: @ltGrey;
+
+    span {
+        display: block;
+    }
+}
+
+.info {
+    display: block;
+    margin: 6px 0 4px;
+    font-style: italic;
+}
+
+p {
+    text-align: justify;
+    margin: 12px 0
+}
+
+.small {
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin: 4px 0 8px;
+}
+
+body {
+    background-color: @background;
+}
+
+.mobileBlock {
+    display: block;
+}
+
+.mobileHide {
+    display: none;
+}
+
+.guestBook {
+    margin-top: 20px;
+    border-top: 1px solid @title;
+}
+
+.author {
+    float: right;
+    margin: 5px 16px;
+}
+
+h2, h3, p {
+    clear: right;
+}
+
+@media only screen and (min-width: @tabletWidth) {
+    .mobileBlock {
+        display: inline;
+    }
+
+    .mobileHide {
+        display: block;
+    }
+
+    .tabletFloatLeft {
+        display: block;
+        float: left;
+    }
+}
+
+@media only screen and (min-width: @desktopWidth) {
+    .content {
+        max-width: @desktopWidth;
+    }
+}

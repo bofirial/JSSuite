@@ -1,0 +1,17 @@
+﻿
+@import "../../../Styles/References.less";
+
+//TODO: Do we need a before fix for hiding Before Addons?
+
+.grid {
+    tr:not(.footable-row-detail) {
+        td {
+            overflow: hidden;
+            -ms-text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 200px;
+        }
+    }
+}

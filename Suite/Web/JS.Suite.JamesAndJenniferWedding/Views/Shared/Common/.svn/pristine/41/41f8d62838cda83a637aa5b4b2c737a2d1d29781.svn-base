@@ -1,0 +1,5 @@
+﻿@model JS.Suite.BusinessLogic.Messaging.AppMessage
+@{
+    Layout = "~/Views/Shared/Common/Templates/Email/_EmailLayout.cshtml";
+}
+<h2>@Model.Message</h2>

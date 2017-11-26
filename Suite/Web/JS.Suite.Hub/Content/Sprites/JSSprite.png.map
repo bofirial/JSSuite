@@ -1,0 +1,60 @@
+{
+  "images": [
+    {
+      "name": "/Content/Images/Salamander_Collections.png",
+      "width": 64,
+      "height": 64,
+      "offsetX": 0,
+      "offsetY": 0
+    },
+    {
+      "name": "/Content/Images/Salamander_Games.png",
+      "width": 64,
+      "height": 64,
+      "offsetX": 0,
+      "offsetY": 64
+    },
+    {
+      "name": "/Content/Images/Salamander_Hub.png",
+      "width": 64,
+      "height": 64,
+      "offsetX": 0,
+      "offsetY": 128
+    },
+    {
+      "name": "/Content/Images/Salamander_Support.png",
+      "width": 64,
+      "height": 64,
+      "offsetX": 0,
+      "offsetY": 192
+    },
+    {
+      "name": "/Content/Images/Salamander_Collections_Hover.png",
+      "width": 64,
+      "height": 64,
+      "offsetX": 0,
+      "offsetY": 256
+    },
+    {
+      "name": "/Content/Images/Salamander_Games_Hover.png",
+      "width": 64,
+      "height": 64,
+      "offsetX": 0,
+      "offsetY": 320
+    },
+    {
+      "name": "/Content/Images/Salamander_Hub_Hover.png",
+      "width": 64,
+      "height": 64,
+      "offsetX": 0,
+      "offsetY": 384
+    },
+    {
+      "name": "/Content/Images/Salamander_Support_Hover.png",
+      "width": 64,
+      "height": 64,
+      "offsetX": 0,
+      "offsetY": 448
+    }
+  ]
+}

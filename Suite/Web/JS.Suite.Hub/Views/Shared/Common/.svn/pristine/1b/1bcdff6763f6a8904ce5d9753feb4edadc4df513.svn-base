@@ -1,0 +1,31 @@
+﻿@using JSHelpers = JS.Core.Foundation.Helpers
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Localization.ApplicationName</title>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Rancho" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Gudea" rel="stylesheet" type="text/css">
+    @Styles.Render(String.Format("{1}://{2}{0}", Url.Content("~/Content/css"), Request.Url.Scheme, Request.Url.Authority))
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            @{
+                var appName = JSHelpers.EnumHelper.Current.GetName(JS.Suite.Foundation.Constants.Applications.Games);
+            }
+
+            <a href="@Url.Action("Index", appName, new { area = appName }, Request.Url.Scheme)" class="navbar-brand @appName">@Localization.ApplicationName</a>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿/*******************************************
+ * Jumping Salamander JSCondition Module
+ *******************************************/
+
+(function (window, JS, $) {
+    if (JS) {
+        function JSConditionModule() {
+
+            var self = this,
+                JSConditionTypes = {
+                    IsEqualToValue: 1,
+                    IsNotEqualToValue: 2,
+                    ValidationEqualsValue: 3
+                };
+
+            function JSCondition($element, conditionKey)
+            {
+                var self = this,
+                    targetName = $element.data('conditionTargetNameK' + conditionKey),
+                    targetValue = $element.data('conditionTargetValueK' + conditionKey),
+                    conditionType = $element.data('conditionTypeK' + conditionKey);
+
+                this.getTarget = function() {
+                    return $('[name=' + targetName + ']');
+                }
+                
+                this.getTargetName = function () {
+                    return targetName;
+                }
+
+                this.isMet = function () {
+
+                    var $target = self.getTarget();
+
+                    switch (conditionType) {
+                        case JSConditionTypes.IsEqualToValue:
+
+                            return $target.val() == targetValue;
+                            
+                        case JSConditionTypes.IsNotEqualToValue:
+
+                            return $target.val() != targetValue;
+
+                        case JSConditionTypes.ValidationEqualsValue:
+
+                            return $target.valid() == (targetValue == "true" || targetValue == "True" || targetValue === true);
+
+                        default:
+
+                    }
+                }
+            }
+
+            this.createConditionsFromKeys = function ($element, conditionKeys) {
+
+                var jsConditions = {},
+                    $targets = $();
+
+                for (var i in conditionKeys) {
+                    var key = conditionKeys[i],
+                        jsCondition = self.newCondition($element, key),
+                        targetName = jsCondition.getTargetName();
+
+                    if (jsConditions[targetName] == undefined) {
+                        jsConditions[targetName] = [];
+
+                        $targets = $targets.add(jsCondition.getTarget());
+                    }
+
+                    jsConditions[targetName].push(jsCondition);
+                }
+
+                return {
+                    jsConditions: jsConditions,
+                    $targets: $targets
+                };
+            };
+
+            this.newCondition = function ($element, conditionKey) {
+                return new JSCondition($element, conditionKey);
+            };
+
+            this.anyConditionIsMet = function (jsConditions) {
+
+                for (var i in jsConditions) {
+                    for (var j in jsConditions[i]) {
+
+                        var jsCondition = jsConditions[i][j];
+
+                        if (jsCondition.isMet()) {
+                            return true;
+                        } 
+                    }
+                }
+
+                return false;
+            };
+
+        }
+
+        JS.registerModule("controls.jsCondition", JSConditionModule);
+    }
+    else {
+        throw new "JS Core Module Missing.  Unable to register the JSCondition Module";
+    }
+
+})(window, JS, $);

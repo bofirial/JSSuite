@@ -1,0 +1,28 @@
+﻿@model DateTime
+
+@{
+    //http://bradwilson.typepad.com/blog/2009/10/aspnet-mvc-2-templates-part-3-default-templates.html
+    //http://aspnetwebstack.codeplex.com/SourceControl/latest#src/System.Web.Mvc/Html/DefaultEditorTemplates.cs
+    
+    FieldData fieldData = (FieldData)Html.ViewData["FieldData"];
+
+    fieldData.HtmlAttributes.Add("type", "date");
+
+    fieldData.HtmlAttributes.AddClass("text-box");
+    fieldData.HtmlAttributes.AddClass("single-line");
+
+    Html.Html5DateRenderingMode = Html5DateRenderingMode.Rfc3339;
+
+    if (Html.Html5DateRenderingMode == Html5DateRenderingMode.Rfc3339)
+    {
+        ModelMetadata metadata = Html.ViewContext.ViewData.ModelMetadata;
+        object value = metadata.Model;
+
+        if (value is DateTime || value is DateTimeOffset)
+        {
+            Html.ViewContext.ViewData.TemplateInfo.FormattedModelValue = String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:yyyy-MM-dd}", value);
+        }
+    }
+}
+
+@Html.TextBox(String.Empty, Html.ViewContext.ViewData.TemplateInfo.FormattedModelValue, fieldData.HtmlAttributes)

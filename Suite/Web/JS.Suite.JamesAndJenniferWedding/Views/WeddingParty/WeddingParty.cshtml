@@ -1,0 +1,11 @@
+﻿@model List<List<JS.Suite.DataAbstraction.JSWedding.WeddingPartyMember>>
+
+@foreach (var weddingPartyGroup in Model)
+{
+    <div class="memberGroup">
+        @foreach (var weddingPartyMember in weddingPartyGroup)
+        {
+            @Html.Partial("_WeddingPartyMemberSummary", weddingPartyMember)
+        }
+    </div>
+}

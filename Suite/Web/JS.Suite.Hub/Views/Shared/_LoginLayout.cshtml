@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+<div id="background"></div>
+
+<h1><a href="@Url.Action("Index", "Home")">@Localization.ApplicationName</a></h1>
+
+<div class="loginContent container-fluid">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+             @RenderBody()
+        </div>
+    </div>
+</div>
+@section Styles {
+    @Styles.Render("~/Content/login")
+
+    @RenderSection("Styles", required: false)
+}
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

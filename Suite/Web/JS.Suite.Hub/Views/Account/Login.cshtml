@@ -1,0 +1,54 @@
+﻿@model JS.Suite.Hub.Models.Account.LoginViewModel
+
+@using JS.Suite.Hub.Models.Account
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+            new
+            {
+                role = "form"
+            }))
+{
+    @Html.AntiForgeryToken()
+
+    <h2>@Localization.LogIn</h2>
+
+    @Html.ValidationSummaryAlert()
+
+    @Html.Alert((string)ViewBag.StatusMessage, AlertTypes.Success)
+
+    using (Html.FieldGroup(g => g))
+    {
+        @Html.FieldFor(m => m.UserName).WithFieldIcon(FAIcons.User).WithCustomLayoutClasses("col-sm-6")
+        @Html.FieldFor(m => m.Password).WithFieldIcon(FAIcons.Key).WithCustomLayoutClasses("col-sm-6")
+        @Html.FieldFor(m => m.RememberMe).WithCustomLayoutClasses("col-sm-6")
+    }
+    
+    using (Html.ButtonGroup(g => g))
+    {    
+        @Html.Button(Localization.LogIn).WithCustomLayoutClasses("col-sm-4", "col-sm-offset-4").AsSubmit()
+    }
+
+    using (Html.TextGroup(g => g))
+    {
+        <div class="col-xs-12 loginMessage">
+            <p><span class="hidden-xs">@Localization.NewtoJumpingSalamander</span>@Html.ActionLink(Localization.CreateANewAccount, "Register")</p>
+        </div>
+
+        <div class="col-xs-12 loginMessage">
+            <p><span class="hidden-xs">@Localization.ForgotYourPassword</span>@Html.ActionLink(Localization.SendAPasswordResetEmail, "ForgotPassword")</p>
+        </div>
+    }
+}
+
+@Html.Partial("_ExternalLoginsListPartial",
+    new ExternalLoginViewModel
+    {
+        Action = "ExternalLogin",
+        RouteValues = new { ReturnUrl = ViewBag.ReturnUrl },
+        ButtonTextFormat = Localization.LogInWith_,
+        ButtonHoverFormat = Localization.LogInUsingYour_Account
+    })

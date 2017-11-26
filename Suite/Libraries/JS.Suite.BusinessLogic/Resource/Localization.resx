@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ApplicationLog" xml:space="preserve">
+    <value>Application Log</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>Jumping Salamander</value>
+  </data>
+  <data name="Collections" xml:space="preserve">
+    <value>Collections</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="Logging" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="MyCollections" xml:space="preserve">
+    <value>My Collections</value>
+  </data>
+  <data name="MyGames" xml:space="preserve">
+    <value>My Games</value>
+  </data>
+  <data name="NewCollection" xml:space="preserve">
+    <value>New Collection</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>New Game</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="TrafficLog" xml:space="preserve">
+    <value>Traffic Log</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="BackToTheLoginScreen" xml:space="preserve">
+    <value>Back to the Login Screen</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="CreateANewAccount" xml:space="preserve">
+    <value>Create a New Account</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Forgot your Password?</value>
+  </data>
+  <data name="LogInUsingYour_Account" xml:space="preserve">
+    <value>Log in using your {0} account</value>
+  </data>
+  <data name="LogInWith_" xml:space="preserve">
+    <value>Log in with {0}</value>
+  </data>
+  <data name="NewtoJumpingSalamander" xml:space="preserve">
+    <value>New to Jumping Salamander?</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me?</value>
+  </data>
+  <data name="SendAPasswordResetEmail" xml:space="preserve">
+    <value>Send a Password Reset Email</value>
+  </data>
+  <data name="The_And_DoNotMatch" xml:space="preserve">
+    <value>The {1} and {0} do not match.</value>
+  </data>
+  <data name="The_MustBeAtLeast_CharactersLong" xml:space="preserve">
+    <value>The {0} must be at least {2} characters long.</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="AddALogin" xml:space="preserve">
+    <value>Add a Login</value>
+  </data>
+  <data name="BackToTheHomeScreen" xml:space="preserve">
+    <value>Back to the Home Screen</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="InvalidUserNameOrPassword" xml:space="preserve">
+    <value>Invalid User Name or Password</value>
+  </data>
+  <data name="LinkYour_Account" xml:space="preserve">
+    <value>Link your {0} Account</value>
+  </data>
+  <data name="RemoveALogin" xml:space="preserve">
+    <value>Remove a Login</value>
+  </data>
+  <data name="Remove_Account" xml:space="preserve">
+    <value>Remove {0} Account</value>
+  </data>
+  <data name="AddALocalPassword" xml:space="preserve">
+    <value>Add a Local Password</value>
+  </data>
+  <data name="AnErrorHasOccured" xml:space="preserve">
+    <value>An error has occured.</value>
+  </data>
+  <data name="AssociateYour_Account" xml:space="preserve">
+    <value>Associate your {0} account.</value>
+  </data>
+  <data name="ChangeYourLocalPassword" xml:space="preserve">
+    <value>Change Your Local Password</value>
+  </data>
+  <data name="LogInFailedWithExternalProvider" xml:space="preserve">
+    <value>Log in failed with external provider.</value>
+  </data>
+  <data name="ManageYourUserAccount" xml:space="preserve">
+    <value>Manage Your User Account</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="TheExternalLogInWasAdded" xml:space="preserve">
+    <value>The external log in was added.</value>
+  </data>
+  <data name="TheExternalLogInWasRemoved" xml:space="preserve">
+    <value>The external log in was removed.</value>
+  </data>
+  <data name="YourPasswordHasBeenChanged" xml:space="preserve">
+    <value>Your password has been changed.</value>
+  </data>
+  <data name="YourPasswordHasBeenSet" xml:space="preserve">
+    <value>Your password has been set.</value>
+  </data>
+  <data name="AnErrorOccurredWhileProcessingYourRequest" xml:space="preserve">
+    <value>An error occurred while processing your request.</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="_Label" xml:space="preserve">
+    <value>{0} Label</value>
+  </data>
+  <data name="ReferenceNumber" xml:space="preserve">
+    <value>Reference Number</value>
+  </data>
+  <data name="WeReSorryThisIssueHasBeenLoggedAndWillBeLookedIntoShortly" xml:space="preserve">
+    <value>We're sorry.  This issue has been logged and will be looked into shortly.</value>
+  </data>
+  <data name="This_IsUnavailable" xml:space="preserve">
+    <value>This {0} is unavailable.</value>
+  </data>
+  <data name="ThisAccountHasBeenLockedOut" xml:space="preserve">
+    <value>This account has been locked out for too many failed log in attempts.  Please try again in 2 hours.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="The_FieldIsNotAValidEmailAddress" xml:space="preserve">
+    <value>The {0} field is not a valid e-mail address.</value>
+  </data>
+  <data name="ClickHereToConfirmYourEmailAddress" xml:space="preserve">
+    <value>Click here to confirm your email address!</value>
+  </data>
+  <data name="InOrderToReceiveEmailNotifications" xml:space="preserve">
+    <value>In order to receive email notifications from us we need to confirm this email address.  Please click the link below to complete the confirmation process.</value>
+  </data>
+  <data name="ThanksComma" xml:space="preserve">
+    <value>Thanks,</value>
+  </data>
+  <data name="ThankYouForJoiningJumpingSalamander" xml:space="preserve">
+    <value>Thank you for joining Jumping Salamander!</value>
+  </data>
+  <data name="VerifyYourEmailAddressWithJumpingSalamander" xml:space="preserve">
+    <value>Verify Your Email Address with Jumping Salamander</value>
+  </data>
+  <data name="ClickHereToResetYourPassword" xml:space="preserve">
+    <value>Click here to reset your password.</value>
+  </data>
+  <data name="ConfirmationEmailSent" xml:space="preserve">
+    <value>Confirmation Email Sent</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirm Email</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email Confirmed</value>
+  </data>
+  <data name="PleaseCheckYourEmailToResetYourPassword" xml:space="preserve">
+    <value>Please check your email to reset your password.</value>
+  </data>
+  <data name="PleaseResetYourPasswordByClickingTheLinkBelow" xml:space="preserve">
+    <value>Please reset your password by clicking the link below.</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="ResetYourJumpingSalamanderPassword" xml:space="preserve">
+    <value>Reset Your Jumping Salamander Password</value>
+  </data>
+  <data name="SendThePasswordResetEmail" xml:space="preserve">
+    <value>Send the Password Reset Email</value>
+  </data>
+  <data name="TheUserEitherDoesNotExistOrIsNotConfirmed" xml:space="preserve">
+    <value>The user either does not exist or is not confirmed.</value>
+  </data>
+  <data name="AnotherUserHasAlreadyConfirmedThisEmailAddress" xml:space="preserve">
+    <value>Another user has already confirmed this email address.</value>
+  </data>
+  <data name="CantConfirmEmail" xml:space="preserve">
+    <value>Can't Confirm Email</value>
+  </data>
+  <data name="InnerException" xml:space="preserve">
+    <value>Inner Exception</value>
+  </data>
+  <data name="InnerInnerException" xml:space="preserve">
+    <value>Inner Inner Exception</value>
+  </data>
+  <data name="InnerInnerInnerException" xml:space="preserve">
+    <value>Inner Inner Inner Exception</value>
+  </data>
+  <data name="ApplicationLogSummary" xml:space="preserve">
+    <value>Application Log Summary</value>
+  </data>
+  <data name="TrafficLogLocationSummary" xml:space="preserve">
+    <value>Traffic Log Location Summary</value>
+  </data>
+  <data name="TotalCollectionItems" xml:space="preserve">
+    <value>Total Collection Items</value>
+  </data>
+  <data name="CreateNewCollection" xml:space="preserve">
+    <value>Create New Collection</value>
+  </data>
+  <data name="CreateNewItem" xml:space="preserve">
+    <value>Create New Item</value>
+  </data>
+  <data name="BackToMyCollections" xml:space="preserve">
+    <value>Back To My Collections</value>
+  </data>
+  <data name="SavedSuccessfully" xml:space="preserve">
+    <value>Saved Successfully</value>
+  </data>
+</root>

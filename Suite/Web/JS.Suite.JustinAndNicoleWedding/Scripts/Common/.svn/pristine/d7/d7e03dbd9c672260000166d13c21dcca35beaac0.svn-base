@@ -1,0 +1,65 @@
+﻿/*******************************************
+ * Jumping Salamander Core Module
+ *******************************************/
+
+var JS = (function (window, JS, $) {
+    function JumpingSalamanderLibrary() {
+        var core = this,
+            registeredModules = [],
+            registeredInitializationFunctions = [];
+
+        function registerInitializeRegionFunction(module) {
+            var $document = $(document);
+
+            registeredInitializationFunctions.push({ module: module });
+
+            $document.ready(module.initializeRegion.bind(module, $document));
+        }
+
+        this.registerModule = function (namespace, moduleFactory) {
+            if ($.inArray(namespace, registeredModules) != -1) {
+                return;
+            }
+
+            var namespaceParts = namespace.split("."),
+                currentNamespace = core;
+
+            var moduleName = namespaceParts.pop();
+
+            for (var i in namespaceParts) {
+                var nextNamespaceName = namespaceParts[i];
+
+                if (!currentNamespace[nextNamespaceName]) {
+                    currentNamespace[nextNamespaceName] = {};
+                }
+
+                currentNamespace = currentNamespace[nextNamespaceName];
+            }
+
+            if (!currentNamespace[moduleName]) {
+                currentNamespace[moduleName] = new moduleFactory();
+            }
+
+            if (currentNamespace[moduleName] && typeof currentNamespace[moduleName].initializeRegion == "function") {
+                registerInitializeRegionFunction(currentNamespace[moduleName]);
+            }
+
+            if (currentNamespace[moduleName] && typeof currentNamespace[moduleName].init == "function") {
+                currentNamespace[moduleName].init();
+            }
+
+            registeredModules.push(namespace);
+        };
+
+        this.initializeRegion = function ($region) {
+            for (var i in registeredInitializationFunctions) {
+                var module = registeredInitializationFunctions[i].module;
+
+                module.initializeRegion.call(module, $region);
+            }
+        };
+    }
+
+    return new JumpingSalamanderLibrary();
+
+})(window, JS, $);

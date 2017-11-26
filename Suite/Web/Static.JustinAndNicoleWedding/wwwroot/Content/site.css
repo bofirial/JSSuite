@@ -1,0 +1,424 @@
+﻿.content {
+    margin: auto
+}
+
+a img {
+    border: none
+}
+
+a:active {
+    background-color: transparent
+}
+
+html {
+    overflow-y: scroll;
+    overflow-x: hidden
+}
+
+html, body {
+    height: 100%;
+    min-width: 330px;
+    margin: 0;
+    color: #fff;
+    font-family: Helvetica,Arial,'DejaVu Sans','Liberation Sans',Freesans,sans-serif;
+    line-height: 1.4
+}
+
+section {
+    padding: 0 8px 20px;
+    text-align: center
+}
+
+    section:after, .clearFix:after {
+        content: ".";
+        visibility: hidden;
+        display: block;
+        height: 0;
+        clear: both
+    }
+
+h2, h3, h4 {
+    margin: 12px 0 4px
+}
+
+.address {
+    margin-top: 0;
+    color: #aaa
+}
+
+    .address span {
+        display: block
+    }
+
+.info {
+    display: block;
+    margin: 6px 0 4px;
+    font-style: italic
+}
+
+p {
+    text-align: justify;
+    margin: 12px 0
+}
+
+.small {
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin: 4px 0 8px
+}
+
+body {
+    background-color: #000
+}
+
+.mobileBlock {
+    display: block
+}
+
+.mobileHide {
+    display: none
+}
+
+.guestBook {
+    margin-top: 20px;
+    border-top: 1px solid #8f00ff
+}
+
+.author {
+    float: right;
+    margin: 5px 16px
+}
+
+h2, h3, p {
+    clear: right
+}
+
+@media only screen and (min-width:700px) {
+    .mobileBlock {
+        display: inline
+    }
+
+    .mobileHide {
+        display: block
+    }
+
+    .tabletFloatLeft {
+        display: block;
+        float: left
+    }
+}
+
+@media only screen and (min-width:1024px) {
+    .content {
+        max-width: 1024px
+    }
+}
+
+header .content {
+    overflow: auto;
+    text-align: center
+}
+
+    header .content .backgroundContainer div {
+        width: 330px;
+        height: 332px;
+        background: url('/Content/Images/Engagement Photo 4.jpg');
+        -moz-background-size: 100% 100%;
+        background-size: 100% 100%;
+        display: block;
+        margin: 0 auto
+    }
+
+    header .content h1 {
+        margin: 0;
+        padding: 10px;
+        color: #fff;
+        font-size: 24px;
+        letter-spacing: 2px;
+        line-height: normal;
+        font-weight: normal;
+        display: block;
+        text-align: center;
+        background-color: #8f00ff;
+        background-image: -webkit-linear-gradient(#cb89ff,#8f00ff,#cb89ff);
+        background-image: linear-gradient(90deg,#cb89ff,#8f00ff,#cb89ff);
+        position: relative;
+        top: -75px
+    }
+
+        header .content h1:before {
+            clear: both;
+            content: " ";
+            display: block
+        }
+
+    header .content .postWeddingMessage {
+        position: absolute;
+        display: block;
+        font-size: 32px;
+        text-align: center;
+        word-spacing: 10px;
+        color: #fff;
+        left: 0;
+        right: 0;
+        margin: -260px auto 0;
+        font-weight: bold;
+        letter-spacing: 3px;
+        color: #550f8b;
+        text-shadow: -2px 0 #fff,0 2px #fff,2px 0 #fff,0 -2px #fff
+    }
+
+    header .content .navigation {
+        list-style: none;
+        margin-top: -65px;
+        padding: 0;
+        background-color: #000;
+        border-bottom: 1px solid #fff;
+        border-top: 1px solid #fff;
+        font-size: 0;
+        text-align: center
+    }
+
+        header .content .navigation li {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px
+        }
+
+            header .content .navigation li a {
+                color: #fff;
+                text-decoration: none;
+                display: inline-block;
+                padding: 10px;
+                margin: 4px
+            }
+
+                header .content .navigation li a:hover {
+                    color: #cb89ff
+                }
+
+                header .content .navigation li a.current {
+                    color: #8f00ff
+                }
+
+                    header .content .navigation li a.current:hover {
+                        color: #cb89ff
+                    }
+
+@media only screen and (min-width:700px) {
+    header .content .backgroundContainer {
+        display: inline-block
+    }
+
+        header .content .backgroundContainer div {
+            display: inline-block;
+            margin: 0;
+            margin-left: 30px
+        }
+
+        header .content .backgroundContainer:before {
+            content: " ";
+            background: url('/Content/Images/Engagement Photo 5.jpg');
+            -moz-background-size: 100% 100%;
+            background-size: 100% 100%;
+            width: 330px;
+            height: 332px;
+            display: inline-block
+        }
+
+    header .content h1 {
+        font-size: 36px
+    }
+
+    header .content .postWeddingMessage {
+        margin-top: -210px
+    }
+
+    header .content .navigation li {
+        display: inline-block;
+        font-size: 14px
+    }
+
+        header .content .navigation li a {
+            margin: 4px 0;
+            padding: 10px 8px
+        }
+
+        header .content .navigation li:after {
+            content: "•";
+            color: #fff
+        }
+
+        header .content .navigation li:last-child:after {
+            content: ""
+        }
+}
+
+@media only screen and (min-width:855px) {
+    header .content .navigation li {
+        font-size: 16px
+    }
+
+        header .content .navigation li a {
+            margin: 4px;
+            padding: 10px
+        }
+}
+
+@media only screen and (min-width:1024px) {
+    header .content .backgroundContainer {
+        display: block
+    }
+
+        header .content .backgroundContainer div {
+            display: block;
+            float: right
+        }
+
+        header .content .backgroundContainer:before {
+            display: block;
+            float: left
+        }
+
+        header .content .backgroundContainer:after {
+            content: " ";
+            background: url('/Content/Images/Engagement Photo 3.jpg');
+            -moz-background-size: 100% 100%;
+            background-size: 100% 100%;
+            width: 330px;
+            height: 332px;
+            margin: 4px auto;
+            display: block
+        }
+
+    header .content .postWeddingMessage {
+        margin-top: -225px;
+        font-size: 48px
+    }
+}
+
+article {
+    border-bottom: 1px solid #8f00ff;
+    padding: 0 0 6px
+}
+
+    article .byLine {
+        font-style: italic;
+        display: block
+    }
+
+        article .byLine a {
+            color: #fff;
+            text-decoration: none
+        }
+
+    article a {
+        color: #8f00ff
+    }
+
+.fieldGroup {
+    padding: 0;
+    margin: 12px 0;
+    display: inline-block;
+    text-align: left
+}
+
+    .fieldGroup .field {
+        padding-bottom: 5px
+    }
+
+    .fieldGroup label {
+        display: block
+    }
+
+    .fieldGroup textarea {
+        resize: none;
+        height: 100px
+    }
+
+    .fieldGroup input, .fieldGroup textarea {
+        width: 300px
+    }
+
+    .fieldGroup .input-validation-error {
+        outline: 3px solid #b41e1e
+    }
+
+    .fieldGroup .field-validation-error {
+        display: block;
+        color: #b41e1e;
+        width: 300px
+    }
+
+input[type=submit] {
+    display: block;
+    margin: auto;
+    padding: 5px 20px
+}
+
+.registries div {
+    display: inline-block;
+    background-color: #fff;
+    vertical-align: middle;
+    width: 200px;
+    height: 130px;
+    margin: 6px 10px 15px;
+    border: 5px solid #8f00ff
+}
+
+    .registries a:hover {
+        border-color: #cb89ff
+    }
+
+    .registries div.kohls img {
+        margin-top: 45px;
+        width: 180px
+    }
+
+.summaryCard.wide {
+    width: 340px
+}
+
+.summaryCard {
+    display: inline-block;
+    margin: 10px 0;
+    border: 2px solid #fff;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 210px
+}
+
+    .summaryCard img {
+        height: 200px;
+        margin: 5px
+    }
+
+    .summaryCard h2 {
+        color: #fff;
+        background-color: #8f00ff;
+        background-image: -webkit-linear-gradient(#cb89ff,#8f00ff,#cb89ff);
+        background-image: linear-gradient(90deg,#cb89ff,#8f00ff,#cb89ff);
+        position: relative;
+        margin-top: -33px;
+        padding: 5px 0;
+        font-size: 12px
+    }
+
+    .summaryCard h3 {
+        color: #8f00ff;
+        margin: 0;
+        padding: 10px 0;
+        border-top: solid 1px #fff;
+        font-size: 14px
+    }
+
+    .summaryCard:hover h3 {
+        color: #cb89ff
+    }
+
+@media only screen and (min-width:450px) {
+    .summaryCard {
+        margin: 10px
+    }
+}

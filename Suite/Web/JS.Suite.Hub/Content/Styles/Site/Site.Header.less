@@ -1,0 +1,89 @@
+﻿
+@import "../References.less";
+
+.navbar, .navbar .dropdown-menu {
+    font-size: 16px;
+    letter-spacing: 1px;
+    
+    & > .active > a, & > .active > a:hover, & > .active > a:focus {
+        background-color: @darkGray;
+
+        &:hover {
+            background-color: @gray;
+        }
+    }
+}
+
+li.dropdown-brand {
+    display: inline-block;
+
+    .dropdown-toggle {
+        display: inline-block;
+    }
+
+    &.open {
+        .dropdown-toggle.navbar-brand {
+            background-color: @gray;
+        }
+
+        .dropdown-menu {
+            background-color: @darkGray;
+        }
+    }
+}
+
+.navbar-brand {
+    font-family: @titleFont;
+    font-size: 28px;
+    padding: 25px 15px !important;
+    margin-left: 0 !important;
+
+    &.dropdown-toggle {
+        float: none;
+    }
+
+    &:hover, &:focus {
+
+        &.Hub:before, &.Games:before {
+            .sprite-Content-Images-Salamander_Games_Hover()
+        }
+
+        &.Collections:before {
+            .sprite-Content-Images-Salamander_Collections_Hover()
+        }
+
+        &.Support:before {
+            .sprite-Content-Images-Salamander_Support_Hover()
+        }
+    }
+
+    &:before {
+        content: " ";
+        display: block;
+        float: left;
+        margin-top: -22px;
+        margin-right: 10px;
+    }
+
+    &.Hub:before, &.Games:before {
+        .sprite-Content-Images-Salamander_Games()
+    }
+
+    &.Collections:before {
+        .sprite-Content-Images-Salamander_Collections()
+    }
+
+    &.Support:before {
+        .sprite-Content-Images-Salamander_Support()
+    }
+
+    @media (max-width: @largePhoneWidth) {
+        
+        font-size: 24px;
+
+        &.title:before {
+            display: none;
+        }
+    }
+
+}

@@ -1,0 +1,56 @@
+﻿@model CollectionItem
+@using JS.Suite.DataAbstraction.JSSuite
+
+@{
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+
+@section ModalTitle {Collection Item}
+
+@Html.Alert((string)ViewBag.StatusMessage, AlertTypes.Success)
+
+@using (Html.BeginForm("AddEditModal", "CollectionItem", new { area = "Collections" }, FormMethod.Post, new { role = "form", id = "addEditCollectionItem" }))
+{
+    using (Html.FieldGroup(f => f))
+    {
+        @Html.FieldFor(m => m.CollectionItemId).AsHidden()
+        @Html.FieldFor(m => m.CollectionGroupId).AsHidden()
+
+        @Html.FieldFor(m => m.Name)
+    
+        if (!String.IsNullOrEmpty(Model.CollectionGroup.UDFShortText1Name))
+        {
+            @Html.FieldFor(m => m.UDFShortText1).Label(label => label.OverrideText(Model.CollectionGroup.UDFShortText1Name))
+        }
+
+        if (!String.IsNullOrEmpty(Model.CollectionGroup.UDFShortText2Name))
+        {
+            @Html.FieldFor(m => m.UDFShortText2).Label(label => label.OverrideText(Model.CollectionGroup.UDFShortText2Name))
+        }
+
+        if (!String.IsNullOrEmpty(Model.CollectionGroup.UDFShortText3Name))
+        {
+            @Html.FieldFor(m => m.UDFShortText3).Label(label => label.OverrideText(Model.CollectionGroup.UDFShortText3Name))
+        }
+
+        if (!String.IsNullOrEmpty(Model.CollectionGroup.UDFLongText1Name))
+        {
+            @Html.FieldFor(m => m.UDFLongText1).Label(label => label.OverrideText(Model.CollectionGroup.UDFLongText1Name))
+        }
+
+        if (!String.IsNullOrEmpty(Model.CollectionGroup.UDFDateTime1Name))
+        {
+            @Html.FieldFor(m => m.UDFDateTime1).Label(label => label.OverrideText(Model.CollectionGroup.UDFDateTime1Name))
+        }
+
+        @Html.FieldFor(m => m.Note).SetFieldWidth(FieldSpans.Double)
+    }
+}
+
+@section FooterButtons {
+    <button data-modal-save-form="addEditCollectionItem" type="button" class="btn btn-primary">Save</button>
+    @if (Model.CollectionItemId != default(int))
+    {
+        <button data-modal-close="@Url.Action("Delete", "CollectionItem", new { collectionItemId = Model.CollectionItemId })" type="button" class="btn btn-danger">Delete</button>
+    }
+}

@@ -1,0 +1,9 @@
+﻿.grid tr:not(.footable-row-detail) p.exceptionMessage {
+  display: inline;
+}
+.grid tr:not(.footable-row-detail) p.exceptionMessage b {
+  display: none;
+}
+.grid tr:not(.footable-row-detail) p.exceptionMessage br {
+  display: none;
+}

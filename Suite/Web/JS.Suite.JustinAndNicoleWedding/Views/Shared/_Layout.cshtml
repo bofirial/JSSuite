@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+@{
+    string title = "NICOLE AND JUSTIN";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@title</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/css")
+    @RenderSection("header", required: false)
+    <meta name="description" content="Wedding Website for Justin and " />
+</head>
+<body>
+    <header>
+        <div class="content">
+            <div class="backgroundContainer"><div></div></div>
+            <h1>@title</h1>
+        @if (ViewBag.PostWeddingMessageFlag == true)
+        {
+            @Html.Partial("_PostWeddingMessage")
+        }
+            @Html.Partial("_Navigation")
+        </div>
+    </header>
+    <div class="contentWrapper">
+        <section class="content">
+            @RenderBody()
+        </section>
+    </div>
+</body>
+</html>

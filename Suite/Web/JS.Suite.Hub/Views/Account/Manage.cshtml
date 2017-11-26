@@ -1,0 +1,137 @@
+﻿@model ManageUserViewModel
+
+@using JS.Suite.Hub.Models.Account
+@using Microsoft.AspNet.Identity;
+
+@Html.ValidationSummaryAlert()
+
+@Html.Alert((string)ViewBag.StatusMessage, AlertTypes.Success)
+
+@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { role = "form" }))
+{
+    <h2>@Localization.ManageYourUserAccount</h2>
+    @Html.AntiForgeryToken()
+
+    using (Html.FieldGroup(g => g))
+    {
+        @(Html.FieldFor(m => m.UserId).AsHidden())
+    
+        @(Html.FieldFor(m => m.UserName).WithFieldIcon(FAIcons.User))
+
+        @(Html.FieldFor(m => m.Email)
+            .WithFieldIcon(FAIcons.Envelope)
+            .SetFieldWidth(FieldSpans.Double)
+            .AsDisabled(!String.IsNullOrEmpty(Model.Email))
+            .WithFieldButtons(b =>
+            {
+                if (!String.IsNullOrEmpty(Model.Email))
+                {
+                    b.Button(String.Format("{0}<span class=\"hidden-xs\">{1}</span>",
+                        Html.Icon(FAIcons.Times).ToHtmlString(), Localization.Remove))
+                    .Color(BrandColors.Danger)
+                    .AsSubmitToAction("RemoveEmail");
+
+                    if (!Model.EmailConfirmedFlag)
+                    {
+                        if (ViewBag.EmailAlreadyConfirmedElsewhere == true)
+                        {
+                            b.Button(String.Format("{0}<span class=\"hidden-xs\">{1}</span>",
+                                Html.Icon(FAIcons.EnvelopeO).ToHtmlString(), Localization.CantConfirmEmail))
+                            .Color(BrandColors.Danger)
+                            .WithTitle(Localization.AnotherUserHasAlreadyConfirmedThisEmailAddress)
+                            .AsDisabled(); 
+                        }
+                        else if (ViewBag.ConfirmationEmailSent == true)
+                        {
+                            b.Button(String.Format("{0}<span class=\"hidden-xs\">{1}</span>",
+                                Html.Icon(FAIcons.EnvelopeO).ToHtmlString(), Localization.ConfirmationEmailSent))
+                            .Color(BrandColors.Warning)
+                            .AsDisabled(); 
+                        }
+                        else
+                        {
+                            b.Button(String.Format("{0}<span class=\"hidden-xs\">{1}</span>",
+                                Html.Icon(FAIcons.EnvelopeO).ToHtmlString(), Localization.ConfirmEmail))
+                            .Color(BrandColors.Primary)
+                            .AsSubmitToAction("SendConfirmationEmail"); 
+                        }
+                    }
+                    else
+                    {
+                        b.Button(String.Format("{0}<span class=\"hidden-xs\">{1}</span>",
+                            Html.Icon(FAIcons.Check).ToHtmlString(), Localization.EmailConfirmed))
+                        .Color(BrandColors.Success)
+                        .AsDisabled();
+                    }
+                }
+            }))
+    }
+
+    using (Html.ButtonGroup(g => g))
+    {
+        @Html.Button(Localization.Save).AsSubmit()
+    }
+}
+@using (Html.BeginForm("ManagePassword", "Account", FormMethod.Post, new { role = "form" }))
+{
+    if (!ViewBag.HasLocalPassword)
+    {
+        <h2>@Localization.AddALocalPassword</h2>
+    }
+    else
+    {
+        <h2>@Localization.ChangeYourLocalPassword</h2>
+    }
+    @Html.AntiForgeryToken()
+
+    using (Html.FieldGroup(g => g))
+    {
+        if (ViewBag.HasLocalPassword)
+        {
+            @(Html.FieldFor(m => m.OldPassword)
+            .WithFieldIcon(FAIcons.Key))
+        }
+        @(Html.FieldFor(m => m.NewPassword)
+            .WithFieldIcon(FAIcons.Key))
+
+        @(Html.FieldFor(m => m.ConfirmPassword)
+            .WithFieldIcon(FAIcons.Key))
+    }
+
+    using (Html.ButtonGroup(g => g))
+    {
+        @Html.Button(Localization.Save).AsSubmit()
+    }
+}
+@if (Model.AvailableAccounts != null && Model.AvailableAccounts.Count > 0)
+{
+    <h2>@Localization.AddALogin</h2>
+
+    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginViewModel
+    {
+        Action = "LinkLogin",
+        ButtonTextFormat = Localization.LinkYour_Account,
+        ButtonHoverFormat = Localization.LinkYour_Account,
+        LoginProviders = Model.AvailableAccounts,
+        RouteValues = new { ReturnUrl = Url.Action("Manage") }
+    })
+}
+@if (Model.LinkedAccounts != null && Model.LinkedAccounts.Count > 0 && (ViewBag.HasLocalPassword || Model.LinkedAccounts.Count > 1))
+{
+    <h2>@Localization.RemoveALogin</h2>
+
+    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginViewModel
+        {
+            Action = "Disassociate",
+            ButtonTextFormat = Localization.Remove_Account,
+            ButtonHoverFormat = Localization.Remove_Account,
+            LoginProviders = Model.LinkedAccounts
+        })
+}
+
+@using (Html.TextGroup(g => g))
+{
+    <div class="col-xs-12 loginMessage">
+        <p>@Html.ActionLink(Localization.BackToTheHomeScreen, "Index", "Home")</p>
+    </div>
+}

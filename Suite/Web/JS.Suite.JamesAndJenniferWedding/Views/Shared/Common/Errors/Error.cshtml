@@ -1,0 +1,29 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@using JS.Suite.BusinessLogic.Security
+
+@{
+    string referenceNumber = SecurityManager.Current.TrackingGuid;
+
+    if (!String.IsNullOrEmpty(referenceNumber))
+    {
+        referenceNumber = referenceNumber.Substring(referenceNumber.Length - 5);
+    }
+}
+
+<h1>@Localization.AnErrorOccurredWhileProcessingYourRequest</h1>
+<p>@Localization.WeReSorryThisIssueHasBeenLoggedAndWillBeLookedIntoShortly</p>
+@if (!String.IsNullOrEmpty(referenceNumber))
+{
+    <p><b>@Localization.ReferenceNumber:</b> @referenceNumber</p>
+}
+@if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+{
+    <div>
+        @JS.Suite.BusinessLogic.Helpers.ExceptionHelper.Current.GetHtmlMessage(Model.Exception)
+        <div style="overflow:scroll">
+            <pre>
+@Model.Exception.StackTrace
+            </pre>
+        </div>
+    </div>
+}

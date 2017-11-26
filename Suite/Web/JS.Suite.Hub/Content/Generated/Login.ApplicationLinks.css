@@ -1,0 +1,367 @@
+﻿/*
+@import this file directly into your existing Less files to use these mixins
+*/
+.appLinks {
+  z-index: 400;
+  display: block;
+  width: 280px;
+  height: 280px;
+  position: relative;
+  margin: 0 auto;
+}
+.appLinks .applicationLink {
+  font-size: 0;
+  text-decoration: none;
+  display: block;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  margin: 30px 0;
+}
+.appLinks .applicationLink:before {
+  content: attr(data-application-name);
+  text-align: center;
+  font-family: 'Rancho';
+  color: #999999;
+  text-shadow: 2px 2px 2px #000000;
+  letter-spacing: 2px;
+  font-size: 74px;
+  position: relative;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 235px;
+  top: 0;
+  z-index: 500;
+}
+.appLinks .applicationLink:after {
+  content: " ";
+  display: block;
+  width: 280px;
+  height: 280px;
+  margin-top: -105px;
+  background-size: 225px;
+  background-repeat: no-repeat;
+  background-position: 25px 15px;
+}
+.appLinks .applicationLink.Games {
+  background: #00549c;
+  background-image: radial-gradient(#00549c, #000203);
+  border: solid 5px #00549c;
+}
+.appLinks .applicationLink.Games:after {
+  background-image: url(/Content/Images/Login/Games_Picker.png);
+}
+.appLinks .applicationLink.Support {
+  background: #db9300;
+  background-image: radial-gradient(#db9300, #422c00);
+  border: solid 5px #db9300;
+}
+.appLinks .applicationLink.Support:after {
+  background-image: url(/Content/Images/Login/Support_Picker.png);
+}
+.appLinks .applicationLink.Collections {
+  background: #8a9f00;
+  background-image: radial-gradient(#8a9f00, #050600);
+  border: solid 5px #8a9f00;
+}
+.appLinks .applicationLink.Collections:after {
+  background-image: url(/Content/Images/Login/Collections_Picker.png);
+}
+@media (min-width: 680px) and (min-height: 780px) {
+  .appLinks {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .appLinks.length1 {
+    margin: 160px auto 0;
+  }
+  .appLinks.length2 {
+    margin: 215px auto 0;
+  }
+  .appLinks.length2 .applicationLink.num1 {
+    -moz-transform: rotate(180deg) translate(200px) rotate(-180deg);
+    -ms-transform: rotate(180deg) translate(200px) rotate(-180deg);
+    -o-transform: rotate(180deg) translate(200px) rotate(-180deg);
+    -webkit-transform: rotate(180deg) translate(200px) rotate(-180deg);
+    transform: rotate(180deg) translate(200px) rotate(-180deg);
+  }
+  .appLinks.length2 .applicationLink.num2 {
+    -moz-transform: rotate(360deg) translate(200px) rotate(-360deg);
+    -ms-transform: rotate(360deg) translate(200px) rotate(-360deg);
+    -o-transform: rotate(360deg) translate(200px) rotate(-360deg);
+    -webkit-transform: rotate(360deg) translate(200px) rotate(-360deg);
+    transform: rotate(360deg) translate(200px) rotate(-360deg);
+  }
+  .appLinks.length3 {
+    margin: 275px auto 0;
+  }
+  .appLinks.length3 .applicationLink.num1 {
+    -moz-transform: rotate(270deg) translate(225px) rotate(-270deg);
+    -ms-transform: rotate(270deg) translate(225px) rotate(-270deg);
+    -o-transform: rotate(270deg) translate(225px) rotate(-270deg);
+    -webkit-transform: rotate(270deg) translate(225px) rotate(-270deg);
+    transform: rotate(270deg) translate(225px) rotate(-270deg);
+  }
+  .appLinks.length3 .applicationLink.num2 {
+    -moz-transform: rotate(390deg) translate(225px) rotate(-390deg);
+    -ms-transform: rotate(390deg) translate(225px) rotate(-390deg);
+    -o-transform: rotate(390deg) translate(225px) rotate(-390deg);
+    -webkit-transform: rotate(390deg) translate(225px) rotate(-390deg);
+    transform: rotate(390deg) translate(225px) rotate(-390deg);
+  }
+  .appLinks.length3 .applicationLink.num3 {
+    -moz-transform: rotate(510deg) translate(225px) rotate(-510deg);
+    -ms-transform: rotate(510deg) translate(225px) rotate(-510deg);
+    -o-transform: rotate(510deg) translate(225px) rotate(-510deg);
+    -webkit-transform: rotate(510deg) translate(225px) rotate(-510deg);
+    transform: rotate(510deg) translate(225px) rotate(-510deg);
+  }
+  .appLinks.length4 {
+    margin: 300px auto 0;
+  }
+  .appLinks.length4 .applicationLink.num1 {
+    -moz-transform: rotate(270deg) translate(250px) rotate(-270deg);
+    -ms-transform: rotate(270deg) translate(250px) rotate(-270deg);
+    -o-transform: rotate(270deg) translate(250px) rotate(-270deg);
+    -webkit-transform: rotate(270deg) translate(250px) rotate(-270deg);
+    transform: rotate(270deg) translate(250px) rotate(-270deg);
+  }
+  .appLinks.length4 .applicationLink.num2 {
+    -moz-transform: rotate(360deg) translate(250px) rotate(-360deg);
+    -ms-transform: rotate(360deg) translate(250px) rotate(-360deg);
+    -o-transform: rotate(360deg) translate(250px) rotate(-360deg);
+    -webkit-transform: rotate(360deg) translate(250px) rotate(-360deg);
+    transform: rotate(360deg) translate(250px) rotate(-360deg);
+  }
+  .appLinks.length4 .applicationLink.num3 {
+    -moz-transform: rotate(450deg) translate(250px) rotate(-450deg);
+    -ms-transform: rotate(450deg) translate(250px) rotate(-450deg);
+    -o-transform: rotate(450deg) translate(250px) rotate(-450deg);
+    -webkit-transform: rotate(450deg) translate(250px) rotate(-450deg);
+    transform: rotate(450deg) translate(250px) rotate(-450deg);
+  }
+  .appLinks.length4 .applicationLink.num4 {
+    -moz-transform: rotate(540deg) translate(250px) rotate(-540deg);
+    -ms-transform: rotate(540deg) translate(250px) rotate(-540deg);
+    -o-transform: rotate(540deg) translate(250px) rotate(-540deg);
+    -webkit-transform: rotate(540deg) translate(250px) rotate(-540deg);
+    transform: rotate(540deg) translate(250px) rotate(-540deg);
+  }
+  .appLinks.length5 {
+    margin: 325px auto 0;
+  }
+  .appLinks.length5 .applicationLink.num1 {
+    -moz-transform: rotate(270deg) translate(290px) rotate(-270deg);
+    -ms-transform: rotate(270deg) translate(290px) rotate(-270deg);
+    -o-transform: rotate(270deg) translate(290px) rotate(-270deg);
+    -webkit-transform: rotate(270deg) translate(290px) rotate(-270deg);
+    transform: rotate(270deg) translate(290px) rotate(-270deg);
+  }
+  .appLinks.length5 .applicationLink.num2 {
+    -moz-transform: rotate(342deg) translate(290px) rotate(-342deg);
+    -ms-transform: rotate(342deg) translate(290px) rotate(-342deg);
+    -o-transform: rotate(342deg) translate(290px) rotate(-342deg);
+    -webkit-transform: rotate(342deg) translate(290px) rotate(-342deg);
+    transform: rotate(342deg) translate(290px) rotate(-342deg);
+  }
+  .appLinks.length5 .applicationLink.num3 {
+    -moz-transform: rotate(414deg) translate(290px) rotate(-414deg);
+    -ms-transform: rotate(414deg) translate(290px) rotate(-414deg);
+    -o-transform: rotate(414deg) translate(290px) rotate(-414deg);
+    -webkit-transform: rotate(414deg) translate(290px) rotate(-414deg);
+    transform: rotate(414deg) translate(290px) rotate(-414deg);
+  }
+  .appLinks.length5 .applicationLink.num4 {
+    -moz-transform: rotate(486deg) translate(290px) rotate(-486deg);
+    -ms-transform: rotate(486deg) translate(290px) rotate(-486deg);
+    -o-transform: rotate(486deg) translate(290px) rotate(-486deg);
+    -webkit-transform: rotate(486deg) translate(290px) rotate(-486deg);
+    transform: rotate(486deg) translate(290px) rotate(-486deg);
+  }
+  .appLinks.length5 .applicationLink.num5 {
+    -moz-transform: rotate(558deg) translate(290px) rotate(-558deg);
+    -ms-transform: rotate(558deg) translate(290px) rotate(-558deg);
+    -o-transform: rotate(558deg) translate(290px) rotate(-558deg);
+    -webkit-transform: rotate(558deg) translate(290px) rotate(-558deg);
+    transform: rotate(558deg) translate(290px) rotate(-558deg);
+  }
+  .appLinks .applicationLink {
+    position: absolute;
+    -moz-transition: width 1.0s ease, height 1.0s ease, margin 1.0s ease;
+    -o-transition: width 1.0s ease, height 1.0s ease, margin 1.0s ease;
+    -webkit-transition: width 1.0s ease, height 1.0s ease, margin 1.0s ease;
+    transition: width 1.0s ease, height 1.0s ease, margin 1.0s ease;
+    margin: 0;
+  }
+  .appLinks .applicationLink:hover {
+    width: 320px;
+    height: 320px;
+    margin: -20px;
+    -moz-animation-name: grow;
+    -o-animation-name: grow;
+    -webkit-animation-name: grow;
+    animation-name: grow;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -moz-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+  }
+  .appLinks .applicationLink:hover:after {
+    background-size: 250px;
+    background-position: 30px 20px;
+    -moz-animation-name: salamander;
+    -o-animation-name: salamander;
+    -webkit-animation-name: salamander;
+    animation-name: salamander;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -moz-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+  }
+  .appLinks .applicationLink:hover:before {
+    color: #eeeeee;
+  }
+  .appLinks .applicationLink:before {
+    -moz-transition: color 1.0s ease;
+    -o-transition: color 1.0s ease;
+    -webkit-transition: color 1.0s ease;
+    transition: color 0.5s ease;
+  }
+  .appLinks .applicationLink:after {
+    -moz-transition: background-size 1s ease, background-position 1s ease;
+    -o-transition: background-size 1s ease, background-position 1s ease;
+    -webkit-transition: background-size 1s ease, background-position 1s ease;
+    transition: background-size 1s ease, background-position 1s ease;
+  }
+}
+@keyframes grow {
+  0% {
+    width: 280px;
+    height: 280px;
+    margin: 0;
+  }
+  40% {
+    width: 350px;
+    height: 350px;
+    margin: -40px;
+  }
+  100% {
+    width: 320px;
+    height: 320px;
+    margin: -20px;
+  }
+}
+@-moz-keyframes grow {
+  0% {
+    width: 280px;
+    height: 280px;
+    margin: 0;
+  }
+  40% {
+    width: 350px;
+    height: 350px;
+    margin: -40px;
+  }
+  100% {
+    width: 320px;
+    height: 320px;
+    margin: -20px;
+  }
+}
+@-webkit-keyframes grow {
+  0% {
+    width: 280px;
+    height: 280px;
+    margin: 0;
+  }
+  40% {
+    width: 350px;
+    height: 350px;
+    margin: -40px;
+  }
+  100% {
+    width: 320px;
+    height: 320px;
+    margin: -20px;
+  }
+}
+@keyframes salamander {
+  0% {
+    background-size: 225px;
+    background-position: 25px 15px;
+    width: 280px;
+    height: 280px;
+  }
+  40% {
+    background-size: 275px;
+    background-position: 35px 25px;
+    width: 320px;
+    height: 320px;
+  }
+  100% {
+    background-size: 250px;
+    background-position: 30px 20px;
+    width: 280px;
+    height: 280px;
+  }
+}
+@-moz-keyframes salamander {
+  0% {
+    background-size: 225px;
+    background-position: 25px 15px;
+    width: 280px;
+    height: 280px;
+  }
+  40% {
+    background-size: 275px;
+    background-position: 35px 25px;
+    width: 320px;
+    height: 320px;
+  }
+  100% {
+    background-size: 250px;
+    background-position: 30px 20px;
+    width: 280px;
+    height: 280px;
+  }
+}
+@-webkit-keyframes salamander {
+  0% {
+    background-size: 225px;
+    background-position: 25px 15px;
+    width: 280px;
+    height: 280px;
+  }
+  40% {
+    background-size: 275px;
+    background-position: 35px 25px;
+    width: 320px;
+    height: 320px;
+  }
+  100% {
+    background-size: 250px;
+    background-position: 30px 20px;
+    width: 280px;
+    height: 280px;
+  }
+}

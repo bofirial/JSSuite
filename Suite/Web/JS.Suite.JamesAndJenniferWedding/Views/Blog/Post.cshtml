@@ -1,0 +1,16 @@
+﻿@model JS.Suite.DataAbstraction.JSWedding.WeddingBlogPost
+
+<article>
+    <header>
+        <h2>@Model.Title.ToUpper()</h2>
+
+        <span class="byLine small" >
+            <span>Written by <a href="javascript:void(0)" rel="author">@Model.Author</a> </span>
+            <span class="mobileBlock">on @Html.DisplayFor(m => m.PublishedDate)</span>
+        </span>
+    </header>
+
+    <div class="articleContent">
+        @Html.Raw(Model.ArticleContent)
+    </div>
+</article>

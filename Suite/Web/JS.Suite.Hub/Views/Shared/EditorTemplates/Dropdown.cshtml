@@ -1,0 +1,19 @@
+﻿@model object
+
+@{
+    FieldData fieldData = (FieldData)Html.ViewData["FieldData"];
+
+    DropDownFieldData dropDownFieldData = (DropDownFieldData)Html.ViewData["DropDownFieldData"];
+
+    dropDownFieldData.SelectList = dropDownFieldData.SelectList.Select(s =>
+    {
+        if (s.Value.ToString() == Model.ToString())
+        {
+            return new SelectListItem() { Value = s.Value, Text = s.Text, Selected = true };
+        }
+        
+        return s;
+    });
+}
+
+@Html.DropDownListFor(m => m, dropDownFieldData.SelectList, "", fieldData.HtmlAttributes)

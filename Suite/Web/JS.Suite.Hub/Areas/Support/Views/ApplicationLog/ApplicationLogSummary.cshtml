@@ -1,0 +1,48 @@
+﻿@model ApplicationLogSummary
+@using JS.Suite.DataAbstraction.JSSupport
+
+@using (Html.BeginForm("ApplicationLogSummaryGridData", "ApplicationLog", new { area = "Support" }, FormMethod.Post, new { role = "form", @class = "gridForm" }))
+{
+    <h2>Application Log Summary</h2>
+
+    using (Html.CollapsiblePanel("Grid Filter", c => c))
+    {
+        using (Html.FieldGroup(g => g))
+        {
+            IEnumerable<SelectListItem> traceLevelSelectList = ViewBag.AvailableTraceLevels;
+            IEnumerable<SelectListItem> applicationSelectList = ViewBag.AvailableApplications;
+            
+            @Html.FieldFor(m => m.TraceLevelId).AsDropDown(traceLevelSelectList)
+            @Html.FieldFor(m => m.ApplicationId).AsDropDown(applicationSelectList)
+            @Html.FieldFor(m => m.InsertedOn_From)
+            @Html.FieldFor(m => m.InsertedOn_To)
+        }
+
+        using (Html.ButtonGroup(g => g))
+        {
+            @Html.Button("Search").AsSubmit()
+        }
+    }
+    @(Html.Grid(Model)
+        .Columns(columns =>
+        {
+            columns.Add(a => a.Subject).WithTemplate(
+                template =>
+                    String.Format("<a href=\"{1}\">{0}</a>",
+                        template.Property(g => g.Subject),
+                        Url.Action("Index", new
+                        {
+                            subject = template.Property(g => g.Subject),
+                            traceLevelId = template.Filter(g => g.TraceLevelId),
+                            applicationId = template.Filter(g => g.ApplicationId),
+                            insertedOn_From = template.Filter(g => g.InsertedOn_From),
+                            insertedOn_To = template.Filter(g => g.InsertedOn_To)
+                        })));
+            
+            columns.Add(a => a.Count).Label("Count");
+            columns.Add(a => a.MessageTypeText).Label("Message Type").CollapseLevel(GridColumnCollapseLevels.Tablet).Sortable(false);
+            columns.Add(a => a.InsertedOnDisplay).Label("Last Inserted On").CollapseLevel(GridColumnCollapseLevels.Phone).WithSortName("InsertedOn");
+        })
+                .DefaultSort("Count", System.Data.SqlClient.SortOrder.Descending)
+    )
+}

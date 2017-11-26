@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hub for various Applications" />
+    <title>@Localization.ApplicationName</title>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rancho" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Gudea" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/css")
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/core")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

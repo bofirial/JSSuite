@@ -1,0 +1,18 @@
+﻿@model JS.Suite.DataAbstraction.JSWedding.WeddingPartyMember
+
+@{
+    string weddingPartyClass = "summaryCard";
+
+    string name = JS.Suite.BusinessLogic.JSWedding.WeddingPartyMemberBusinessManager.Current.GetFullName(Model);
+
+    if (Model.SummaryPartnerId != default(int))
+    {
+        weddingPartyClass = "summaryCard wide";
+    }
+}
+
+<a href="@Url.Action("WeddingPartyMember", new { weddingPartyMemberId = Model.WeddingPartyMemberId })" class="@weddingPartyClass">
+    <img src="@Url.Content(Model.ImagePath)" alt="@name" />
+    <h2>@name</h2>
+    <h3>@Model.WeddingRole.ToUpper()</h3>
+</a>

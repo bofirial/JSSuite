@@ -1,0 +1,31 @@
+﻿@using JS.Core.Web.Menu
+@using JS.Suite.Foundation.Constants
+
+@{
+    List<MenuItem> menuItems = new List<MenuItem>() {
+        new MenuItem() {
+                Name = "Logging",
+                ChildMenuItems = new List<MenuItem>() {
+                    new MenuItem() {
+                        Name = SuiteMenuItems.ApplicationLog,
+                        Url = Url.Action("Index", "ApplicationLog", new { area = "Support" })
+                    },
+                    new MenuItem() {
+                        Name = SuiteMenuItems.ApplicationLogSummary,
+                        Url = Url.Action("ApplicationLogSummary", "ApplicationLog", new { area = "Support" })
+                    },
+                    new MenuItem() {
+                        Name = SuiteMenuItems.TrafficLog,
+                        Url = Url.Action("Index", "TrafficLog", new { area = "Support" })
+                    },
+                    new MenuItem() {
+                        Name = SuiteMenuItems.TrafficLogLocationSummary,
+                        Url = Url.Action("TrafficLogLocationSummary", "TrafficLog", new { area = "Support" })
+                    }
+                }
+            }
+    };
+}
+
+
+@Html.Partial("Menus/_Menu", menuItems)

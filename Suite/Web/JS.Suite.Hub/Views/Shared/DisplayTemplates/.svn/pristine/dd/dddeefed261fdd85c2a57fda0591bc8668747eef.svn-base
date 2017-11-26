@@ -1,0 +1,12 @@
+﻿@model DateTime
+
+@using JS.Core.Foundation.Helpers
+
+@{
+    string htmlAttributes = "";
+    if (ViewData["class"] != null)
+    {
+        htmlAttributes = String.Format("class=\"{0}\"", ViewData["class"]);
+    }
+}
+<time @htmlAttributes>@String.Format("{0:dddd MMMM d}{1}, {0:yyyy}", Model, NumberHelper.Current.GetSuffix(Model.Day))</time>

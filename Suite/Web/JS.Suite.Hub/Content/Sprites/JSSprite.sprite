@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sprite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://vswebessentials.com/schemas/v1/sprite.xsd">
+  <settings>
+    <!--Determines if the sprite image should be automatically optimized after creation/update-->
+    <optimize>true</optimize>
+    <orientation>vertical</orientation>
+    <outputType>png</outputType>
+    <!--Use full path to generate unique class or mixin name in CSS, LESS and SASS files. Consider disabling this if you want class names to be filename only.-->
+    <fullPathForIdentifierName>true</fullPathForIdentifierName>
+    <!--Use absolute path in the generated CSS-like files. By default, the URLs are relative to sprite image file (and the location of CSS, LESS and SCSS).-->
+    <useAbsoluteUrl>true</useAbsoluteUrl>
+    <!--Specifies a custom subfolder to save CSS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForCss />
+    <!--Specifies a custom subfolder to save LESS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForLess />
+    <!--Specifies a custom subfolder to save SCSS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForScss />
+    <runOnBuild />
+  </settings>
+  <!--The order of the <file> elements determines the order of the images in the sprite.-->
+  <files>
+    <file>/Content/Images/Salamander_Collections.png</file>
+    <file>/Content/Images/Salamander_Games.png</file>
+    <file>/Content/Images/Salamander_Hub.png</file>
+    <file>/Content/Images/Salamander_Support.png</file>
+    <file>/Content/Images/Salamander_Collections_Hover.png</file>
+    <file>/Content/Images/Salamander_Games_Hover.png</file>
+    <file>/Content/Images/Salamander_Hub_Hover.png</file>
+    <file>/Content/Images/Salamander_Support_Hover.png</file>
+  </files>
+</sprite>

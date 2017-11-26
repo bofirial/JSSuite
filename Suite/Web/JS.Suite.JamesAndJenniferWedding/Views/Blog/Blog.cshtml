@@ -1,0 +1,6 @@
+﻿@model IEnumerable<JS.Suite.DataAbstraction.JSWedding.WeddingBlogPost>
+
+@foreach (var post in Model)
+{
+    @Html.Partial("Post", post)
+}

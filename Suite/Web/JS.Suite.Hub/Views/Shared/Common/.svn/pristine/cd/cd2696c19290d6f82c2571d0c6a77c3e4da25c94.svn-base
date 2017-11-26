@@ -1,0 +1,38 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@using JS.Suite.BusinessLogic.Security
+
+@{
+    string referenceNumber = SecurityManager.Current.TrackingGuid;
+    string exceptionLabel = String.Empty;
+    
+    if (!String.IsNullOrEmpty(referenceNumber))
+	{
+        referenceNumber = referenceNumber.Substring(referenceNumber.Length - 5);
+	}
+
+    if (Model != null && Model.Exception is JS.Core.Foundation.ErrorHandling.CoreException)
+    {
+        exceptionLabel = ((JS.Core.Foundation.ErrorHandling.CoreException)Model.Exception).Label;
+    }
+}
+
+<h1>An Error Occurred While Processing Your Request.</h1>
+<p>We're sorry.  This issue has been logged and will be looked into shortly.</p>
+@if(!String.IsNullOrEmpty(referenceNumber))
+{
+<p><b>Reference Number:</b> @referenceNumber</p>
+}
+@if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+{
+    <div>
+        <p>
+            <b>Exception Label:</b> @exceptionLabel<br />
+            <b>Exception:</b> @Model.Exception.Message<br />
+        </p>
+        <div style="overflow:scroll">
+            <pre>
+@Model.Exception.StackTrace
+            </pre>
+        </div>
+    </div>
+}

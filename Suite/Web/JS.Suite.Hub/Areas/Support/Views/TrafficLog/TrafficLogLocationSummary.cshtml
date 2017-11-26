@@ -1,0 +1,44 @@
+﻿@model TrafficLogSummary
+@using JS.Suite.DataAbstraction.JSSupport
+
+@using (Html.BeginForm("TrafficLogSummaryGridData", "TrafficLog", new { area = "Support" }, FormMethod.Post, new { role = "form", @class = "gridForm" }))
+{
+    <h2>Traffic Log Location Summary</h2>
+
+    using (Html.CollapsiblePanel("Grid Filter", c => c))
+    {
+        using (Html.FieldGroup(g => g))
+        {
+            IEnumerable<SelectListItem> applicationSelectList = ViewBag.AvailableApplications;
+
+            @Html.FieldFor(m => m.ApplicationId).AsDropDown(applicationSelectList)
+            @Html.FieldFor(m => m.InsertedOn_From)
+            @Html.FieldFor(m => m.InsertedOn_To)
+        }
+
+        using (Html.ButtonGroup(g => g))
+        {
+            @Html.Button("Search").AsSubmit()
+        }
+    }
+    @(Html.Grid(Model)
+        .Columns(columns =>
+        {
+            columns.Add(a => a.Location).WithTemplate(
+                template =>
+                    String.Format("<a href=\"{1}\">{0}</a>",
+                        template.Property(g => g.Location),
+                        Url.Action("Index", new
+                        {
+                            location = template.Property(g => g.Location),
+                            applicationId = template.Filter(g => g.ApplicationId),
+                            insertedOn_From = template.Filter(g => g.InsertedOn_From),
+                            insertedOn_To = template.Filter(g => g.InsertedOn_To)
+                        })));
+
+            columns.Add(a => a.Count).Label("Count");
+            columns.Add(a => a.InsertedOnDisplay).Label("Last Inserted On").CollapseLevel(GridColumnCollapseLevels.Phone).WithSortName("InsertedOn");
+        })
+                .DefaultSort("Count", System.Data.SqlClient.SortOrder.Descending)
+    )
+}

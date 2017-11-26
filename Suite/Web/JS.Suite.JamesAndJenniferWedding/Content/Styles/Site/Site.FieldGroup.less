@@ -1,0 +1,41 @@
+﻿
+@import "../References.less";
+
+.fieldGroup {
+    padding: 0;
+    margin: 12px 0;
+    display: inline-block;
+    text-align: left;
+
+    .field {
+        padding-bottom: 5px;
+    }
+
+    label {
+        display: block;
+    }
+
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+
+    input, textarea {
+        width: 300px;
+    }
+
+    .input-validation-error {
+        outline: 3px solid @red;
+    }
+
+    .field-validation-error {
+        display: block;
+        color: @red;
+        width: 300px;
+    }
+}
+input[type=submit] {
+    display: block;
+    margin: auto;
+    padding: 5px 20px;
+}

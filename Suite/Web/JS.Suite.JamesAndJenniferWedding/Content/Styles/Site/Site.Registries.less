@@ -1,0 +1,58 @@
+﻿
+@import "../References.less";
+
+.registries {
+
+    a {
+        display: inline-block;
+        background-color: @white;
+        vertical-align: middle;
+        width: 200px;
+        height: 130px;
+        margin: 6px 10px 15px;
+        border: 5px solid @active;
+
+        &:hover {
+            border-color: @hover;
+        }
+
+        &.kohls img {
+            margin-top: 45px;
+            width: 180px;
+        }
+    }
+}
+
+.directions {
+
+    a {
+        display: inline-block;
+        /*background-color: white;*/
+        vertical-align: middle;
+        width: 200px;
+        /*height: 130px;*/
+        margin: 6px 10px 15px;
+        border: 5px solid @green;
+        text-decoration: none;
+
+        img {
+            height: 130px;
+            width: 200px;
+            border-bottom: 2px solid @green;
+        }
+
+        span {
+            color: white;
+            height: 44px;
+            display: block;
+        }
+
+        &:hover {
+            border-color: @blue;
+
+            img {
+                border-bottom-color: @blue
+            }
+        }
+    }
+}

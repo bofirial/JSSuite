@@ -1,0 +1,159 @@
+﻿/*******************************************
+ * Jumping Salamander Grid Module
+ *******************************************/
+
+(function (window, JS, $) {
+    if (JS) {
+        function Grid() {
+
+            var self = this,
+                gridDataUrl,
+                sortDirections = {
+                    ascending : "Ascending",
+                    descending : "Descending"
+                };
+
+            this.initializeRegion = function ($region) {
+
+                $('.grid', $region).each(function(i, grid) {
+
+                    var $grid = $(grid),
+                        $table = $grid.find('table'),
+                        $gridForm = $grid.closest('form.gridForm'),
+                        gridDataUrl = $gridForm.attr('action'),
+                        footable,
+                        page = 1,
+                        pageSize = 10,
+                        sortBy = $grid.data('defaultSortBy'),
+                        sortDirection = $grid.data('defaultSortDirection');
+
+                    function getGridRow(rowObj)
+                    {
+                        var $row = $('<tr></tr>');
+
+                        $grid.find('th').each(function (i, th) {
+                            var $th = $(th),
+                                propName = $th.data('propertyName'),
+                                propNameParts = propName.split('.'),
+                                propValue = rowObj;
+
+                            for (var j in propNameParts) {
+                                propValue = propValue[propNameParts[j]];
+                            }
+
+                            $row.append($('<td>' + propValue + '</td>'));
+                        });
+
+                        return $row;
+                    }
+
+                    function setGridData(data) {
+                        var currentRows = $grid.find('tbody > tr').not('.footable-row-detail');
+
+                        footable.toggleDetail(currentRows.filter('.footable-detail-show'));
+
+                        footable.removeRow(currentRows);
+
+                        for (var i in data) {
+                            var $row = getGridRow(data[i]);
+
+                            footable.appendRow($row);
+                        }
+
+                        $grid.stopLoadingIndicator();
+                    }
+
+                    function gridAjaxRequest(data)
+                    {
+                        $grid.startLoadingIndicator();
+
+                        data = setQueryContext(data);
+
+                        $.ajax({
+                            url: gridDataUrl,
+                            type: 'POST',
+                            data: data,
+                            success: setGridData
+                        });
+                    }
+
+                    function setQueryContext(data)
+                    {
+                        data.QueryContext = {};
+
+                        data.QueryContext.PageNumber = page;
+                        data.QueryContext.PageSize = pageSize;
+                        data.QueryContext.SortBy = sortBy;
+                        data.QueryContext.SortDirection = sortDirection;
+
+                        return data;
+                    }
+
+                    $table.footable();
+
+                    footable = $table.data('footable');
+
+                    setSortClasses();
+
+                    if (gridDataUrl) {
+
+                        gridAjaxRequest($grid.data('gridInitialFilter'));
+                    }
+                    else {
+                        throw "No Grid Data Url Found.  Are you missing a Grid Form?"
+                    }
+
+                    $gridForm.submit(function (e) {
+                        e.preventDefault();
+
+                        gridAjaxRequest($gridForm.serializeJSON());
+                    });
+
+                    function setSortClasses()
+                    {
+                        $grid.find('.footable-sorted, .footable-sorted-desc').removeClass('footable-sorted').removeClass('footable-sorted-desc');
+
+                        if (sortBy) {
+                            var $sortColumn = $('th.footable-sortable[data-sort-name="' + sortBy + '"]'),
+                                sortClass = 'footable-sorted';
+
+                            if (sortDirection == sortDirections.descending) {
+                                sortClass = 'footable-sorted-desc';
+                            }
+
+                            $sortColumn.addClass(sortClass);
+                        }
+                    }
+
+                    $grid.on('click', 'th.footable-sortable', function (e) {
+                        var $th = $(e.currentTarget);
+
+                        if ($th.hasClass('footable-sorted'))
+                        {
+                            sortBy = $th.data('sortName');
+                            sortDirection = sortDirections.descending;
+                        }
+                        else if ($th.hasClass('footable-sorted-desc')) {
+                            sortBy = null;
+                        }
+                        else {
+                            sortBy = $th.data('sortName');
+                            sortDirection = sortDirections.ascending;
+                        }
+
+                        setSortClasses();
+
+                        $gridForm.submit();
+                    });
+                });
+ 
+            };
+        }
+
+        JS.registerModule("controls.grid", Grid);
+    }
+    else {
+        throw "JS Core Module Missing.  Unable to register the Grid Module";
+    }
+
+})(window, JS, $);

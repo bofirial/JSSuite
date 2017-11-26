@@ -1,0 +1,9 @@
+﻿/*
+@import this file directly into your existing Less files to use these mixins
+*/
+.socialLoginList {
+  color: #999999;
+}
+.socialLoginList h2 {
+  text-align: center;
+}

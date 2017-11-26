@@ -1,0 +1,28 @@
+﻿@using JSHelpers = JS.Core.Foundation.Helpers
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Localization.ApplicationName</title>
+</head>
+<body style="font-family: sans-serif; margin:0;">
+    <div style="background-color: #222; min-height: 70px; margin-bottom: 20px; border: 1px solid #080808;">
+        <div style="width:75%;margin:0 auto;padding:0 15px;">
+            @{
+                var appName = JSHelpers.EnumHelper.Current.GetName(JS.Suite.Foundation.Constants.Applications.Games);
+            }
+
+            <a style="color:#999;font-size:28px; line-height:70px;height:70px;text-decoration:none;float:left;" href="@Url.Action("Index", appName, new { area = appName }, Request.Url.Scheme)" class="navbar-brand @appName">
+                <img src="http://jumpingsalamander.com/Content/Images/Salamander_Games.png" width="64" height="64" style="float:left;margin-right:10px;"/>@Localization.ApplicationName
+            </a>
+        </div>
+    </div>
+    <div style="width:75%;margin:0 auto;padding:0 15px;">
+        @RenderBody()
+    </div>
+</body>
+</html>

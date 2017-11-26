@@ -1,0 +1,3 @@
+WeddingSiteId	Name	WeddingPartyMemberUDF1Name	WeddingPartyMemberUDF2Name	WeddingPartyMemberUDF3Name	InsertedOn	InsertedBy	UpdatedOn	UpdatedBy	RowVersion
+1	JenniferAndJamesWedding	Favorite Game	Current Home	Relationship	2014-04-28 00:00:00.000	1	2014-04-28 00:00:00.000	1	0x000000000000AE24
+2	NicoleAndJustinWedding	NULL	NULL	NULL	2014-04-28 00:00:00.000	1	2014-04-28 00:00:00.000	1	0x000000000000AE25

@@ -1,0 +1,98 @@
+﻿@using JSHelpers = JS.Core.Foundation.Helpers
+@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            @if (SecurityManager.Current.AvailableApplications.Count > 1)
+            {
+                <ul class="nav">
+                    <li class="dropdown dropdown-brand">
+                        <a href="#" class="dropdown-toggle navbar-brand title @JSHelpers.EnumHelper.Current.GetName(SecurityManager.Current.CurrentApplication)" data-toggle="dropdown">@Localization.ApplicationName <b class="caret"></b></a>
+
+                        <ul class="dropdown-menu">
+                            @foreach (var app in SecurityManager.Current.AvailableApplications)
+                            {
+                                string appName = JSHelpers.EnumHelper.Current.GetName(app);
+
+                                <li>
+                                    @Html.ActionLink(Localization.ResourceManager.GetString(appName), "Index", appName, new { area = appName }, new { @class = "navbar-brand " + appName })
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                string currentAppName = JSHelpers.EnumHelper.Current.GetName(SecurityManager.Current.AvailableApplications.FirstOrDefault());
+                @Html.ActionLink(Localization.ApplicationName, "Index", currentAppName, new { area = currentAppName }, new
+            {
+                @class = String.Format("navbar-brand title {0}", currentAppName)
+            })
+            }
+
+        </div>
+        <div class="navbar-collapse collapse">
+            @switch (SecurityManager.Current.CurrentApplication)
+            {
+                case JS.Suite.Foundation.Constants.Applications.Games:
+                    @Html.Partial("Menus/_GamesMenu")
+                    break;
+                case JS.Suite.Foundation.Constants.Applications.Collections:
+                @Html.Partial("Menus/_CollectionsMenu")
+                    break;
+                case JS.Suite.Foundation.Constants.Applications.Support:
+                @Html.Partial("Menus/_SupportMenu")
+                    break;
+                case JS.Suite.Foundation.Constants.Applications.JamesAndJenniferWedding:
+                case JS.Suite.Foundation.Constants.Applications.JustinAndNicoleWedding:
+                case JS.Suite.Foundation.Constants.Applications.CodeGeneration:
+                case JS.Suite.Foundation.Constants.Applications.UnitTest:
+                case JS.Suite.Foundation.Constants.Applications.Hub:
+                default:
+                    break;
+            }
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>
+<div class="container body-content">
+    @RenderBody()
+    @*<hr />
+    <footer>
+        <p>&copy; @DateTimeHelper.Current.GetLocalNow(SecurityManager.Current.ConnectionInfo).Year - @Localization.ApplicationName</p>
+    </footer>*@
+</div>
+
+<div class="modal fade" id="modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="modalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+@section Styles {
+    @RenderSection("Styles", required: false)
+}
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

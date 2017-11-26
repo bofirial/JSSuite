@@ -1,0 +1,17 @@
+﻿@using JS.Core.Web.Menu
+@using JS.Suite.Foundation.Constants
+
+@{
+    List<MenuItem> menuItems = new List<MenuItem>() {
+        new MenuItem() {
+            Name = SuiteMenuItems.MyGames,
+            Url = Url.Action("Index", "Games", new { area = "Games" })
+        },
+        new MenuItem() {
+            Name = SuiteMenuItems.NewGame,
+            Url = Url.Action("Index", "CreateNewGame", new { area = "Games" })
+        }
+    };
+}
+
+@Html.Partial("Menus/_Menu", menuItems)

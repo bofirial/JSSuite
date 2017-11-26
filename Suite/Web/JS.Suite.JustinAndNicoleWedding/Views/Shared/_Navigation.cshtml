@@ -1,0 +1,25 @@
+﻿@using JS.Suite.Foundation.Constants
+
+@{
+    Dictionary<string, string> navItems = new Dictionary<string, string>() {
+        {WeddingMenuItems.WeddingParty, Url.Action("Index", "WeddingParty")}
+      , {WeddingMenuItems.TheWedding, Url.Action("Index", "TheWedding")}
+      , {WeddingMenuItems.GuestInformation, Url.Action("Index", "GuestInformation")}
+      , {WeddingMenuItems.GuestBook, Url.Action("Index", "GuestBook")}
+    };
+}
+
+<ol class="navigation">
+
+    @foreach (var navItem in navItems)
+    {
+        string current = "";
+
+        if (ViewBag.CurrentMenuItem == navItem.Key)
+        {
+            current = "current";
+        }
+
+        <li><a href="@navItem.Value" class=@current>@navItem.Key</a></li>
+    }
+</ol>

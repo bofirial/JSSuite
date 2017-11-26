@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h3 class="modal-title">@RenderSection("ModalTitle", required: true)</h3>
+</div>
+<div class="modal-body clearfix">
+    @RenderBody()
+</div>
+<div class="modal-footer">
+    @RenderSection("FooterButtons", required: false)
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>

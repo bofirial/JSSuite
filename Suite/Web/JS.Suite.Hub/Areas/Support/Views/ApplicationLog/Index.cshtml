@@ -1,0 +1,57 @@
+﻿@model ApplicationLog
+@using JS.Suite.DataAbstraction.JSSupport
+
+@section Styles {
+    @Styles.Render("~/Content/ApplicationLog")
+}
+
+@using (Html.BeginForm("ApplicationLogGridData", "ApplicationLog", new { area = "Support" }, FormMethod.Post, new { role = "form", @class="gridForm" }))
+{
+    <h2>Application Log</h2>
+    using(Html.CollapsiblePanel("Grid Filter", c => c))
+    { 
+        using (Html.FieldGroup(g => g))
+        {
+            IEnumerable<SelectListItem> traceLevelSelectList = ViewBag.AvailableTraceLevels;
+            IEnumerable<SelectListItem> messageTypeSelectList = ViewBag.AvailableMessageTypes;
+            IEnumerable<SelectListItem> applicationSelectList = ViewBag.AvailableApplications;
+            
+            @Html.FieldFor(m => m.Subject)
+            @Html.FieldFor(m => m.Message)
+            @Html.FieldFor(m => m.MessageTypeId).AsDropDown(messageTypeSelectList)
+            @Html.FieldFor(m => m.TraceLevelId).AsDropDown(traceLevelSelectList)
+            @Html.FieldFor(m => m.ApplicationId).AsDropDown(applicationSelectList)
+            @Html.FieldFor(m => m.TrackingGuid)
+            @Html.FieldFor(m => m.InsertedOn_From)
+            @Html.FieldFor(m => m.InsertedOn_To)
+
+        }
+
+        using (Html.ButtonGroup(g => g))
+        {
+            @Html.Button("Search").AsSubmit()
+        }
+    }
+    @(Html.Grid(Model)
+        .Columns(columns =>
+        {
+            columns.Add(a => a.Message).WithTemplate(
+                template => 
+                    String.Format("<a class=\"detailLink\" data-modal-link=\"{1}\" href=\"javascript:void(0)\">{0}</a>", 
+                        template.Property(g => g.Message), 
+                        Url.Action("DetailModal", new {
+                            applicationLogId = template.Property(g => g.ApplicationLogId),
+                            trackingGuid = template.Property(g => g.TrackingGuid)
+                        })));
+            
+            columns.Add(a => a.Message).Label("Full Message").CollapseLevel(GridColumnCollapseLevels.All);
+            columns.Add(a => a.TrackingGuid).Label("Tracking Guid").CollapseLevel(GridColumnCollapseLevels.All);
+            columns.Add(a => a.ApplicationName).Label("Application").CollapseLevel(GridColumnCollapseLevels.All);
+            columns.Add(a => a.MessageTypeText).Label("Message Type").CollapseLevel(GridColumnCollapseLevels.Tablet).HideInDetailView().Sortable(false);
+            columns.Add(a => a.Subject).CollapseLevel(GridColumnCollapseLevels.Phone);
+            columns.Add(a => a.JSUserName).Label("User Name").Sortable(false);
+            columns.Add(a => a.InsertedOnDisplay).Label("Inserted On").CollapseLevel(GridColumnCollapseLevels.Phone).WithSortName("InsertedOn");
+        })
+            .DefaultSort("InsertedOn", System.Data.SqlClient.SortOrder.Ascending)
+    )
+}

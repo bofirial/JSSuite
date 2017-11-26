@@ -1,0 +1,39 @@
+﻿/*******************************************
+ * Jumping Salamander Loading Module
+ *******************************************/
+
+(function (window, JS, $) {
+    if (JS) {
+        function Loading() {
+
+            var self = this;
+
+            $.fn.extend({
+                startLoadingIndicator: function () {
+                    return this.each(function () {
+                        var $this = $(this);
+
+                        $this.addClass('loadingParent');
+
+                        $this.prepend("<div class='loading'></div>");
+                    });
+                },
+                stopLoadingIndicator: function () {
+                    return this.each(function () {
+                        var $this = $(this);
+
+                        $this.find(".loading").remove();
+
+                        $this.removeClass('loadingParent');
+                    });
+                },
+            });
+        }
+
+        JS.registerModule("controls.loading", Loading);
+    }
+    else {
+        throw "JS Core Module Missing.  Unable to register the Loading Module";
+    }
+
+})(window, JS, $);

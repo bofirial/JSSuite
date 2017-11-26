@@ -1,0 +1,41 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@using JS.Suite.BusinessLogic.Security
+
+@{
+    string referenceNumber = SecurityManager.Current.TrackingGuid;
+    string exceptionLabel = String.Empty;
+    
+    if (!String.IsNullOrEmpty(referenceNumber))
+	{
+        referenceNumber = referenceNumber.Substring(referenceNumber.Length - 5);
+	}
+
+    if (Model != null && Model.Exception is JS.Core.Foundation.ErrorHandling.CoreException)
+    {
+        exceptionLabel = ((JS.Core.Foundation.ErrorHandling.CoreException)Model.Exception).Label;
+    }
+}
+
+<h1>@Localization.AnErrorOccurredWhileProcessingYourRequest</h1>
+<p>@Localization.WeReSorryThisIssueHasBeenLoggedAndWillBeLookedIntoShortly</p>
+@if(!String.IsNullOrEmpty(referenceNumber))
+{
+<p><b>@Localization.ReferenceNumber:</b> @referenceNumber</p>
+}
+@if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+{
+    <div>
+        <p>
+            @if (!String.IsNullOrEmpty(exceptionLabel))
+            {
+                <b>@Localization.ExceptionLabel:</b> @exceptionLabel<br />
+            }
+            <b>@Localization.Exception:</b> @Model.Exception.Message<br />
+        </p>
+        <div style="overflow:scroll">
+            <pre>
+@Model.Exception.StackTrace
+            </pre>
+        </div>
+    </div>
+}

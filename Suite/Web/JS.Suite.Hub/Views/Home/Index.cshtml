@@ -1,0 +1,20 @@
+﻿@using JS.Suite.Foundation.Constants
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+
+    List<Applications> availableApplications = SecurityManager.Current.AvailableApplications;
+    
+    string lengthClass = String.Format("length{0}", availableApplications.Count);
+}
+
+<div class="appLinks @lengthClass">
+    @for (int i = 0; i < availableApplications.Count; i++)
+	{
+        Applications application = availableApplications[i];
+        string appName = JS.Core.Foundation.Helpers.EnumHelper.Current.GetName(application);
+        string count = String.Format("num{0}", i + 1);
+
+        <a href="@Url.Action("Index", appName, new {area=appName})" class="@appName @count applicationLink" data-application-name="@Localization.ResourceManager.GetString(appName)">@Localization.ResourceManager.GetString(appName)</a>
+    }
+</div> 

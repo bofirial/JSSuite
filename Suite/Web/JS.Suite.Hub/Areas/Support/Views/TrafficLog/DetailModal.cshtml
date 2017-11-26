@@ -1,0 +1,73 @@
+﻿@model JS.Suite.Hub.Areas.Support.Models.TrafficLog.DetailModalViewModel
+
+@using JS.Suite.DataAbstraction.JSSupport
+
+@{
+    Layout = "~/Views/Shared/_ModalLayout.cshtml";
+}
+
+@section ModalTitle {Traffic Log Detail}
+
+@using (Html.FieldGroup(f => f))
+{
+    @Html.FieldFor(m => m.TrafficLogRequest.RequestedUrl).AsDisabled().SetFieldWidth(FieldSpans.Full)
+
+    @Html.FieldFor(m => m.TrafficLogRequest.UrlReferrer).AsDisabled().SetFieldWidth(FieldSpans.Full)
+
+    @Html.FieldFor(m => m.TrafficLogRequest.BrowserVersion).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.ApplicationName).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.Cookie).AsDisabled().SetFieldWidth(FieldSpans.Double)
+
+    @Html.FieldFor(m => m.TrafficLogRequest.Device).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.InsertedOnDisplay).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.JSUserName).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.Location).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.OperatingSystem).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.RequestType).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.TrackingGuid).AsDisabled()
+
+    @Html.FieldFor(m => m.TrafficLogRequest.TrafficLogGuid).AsDisabled()
+
+    if (!String.IsNullOrEmpty(Model.TrafficLogRequest.PostedData))
+	{
+		@Html.FieldFor(m => m.TrafficLogRequest.PostedData).AsDisabled().SetFieldWidth(FieldSpans.Full) 
+	}
+
+    @Html.FieldFor(m => m.TrafficLogRequest.UserAgent).AsDisabled().SetFieldWidth(FieldSpans.Full)
+
+    if (Model.TrafficLogRequest != null)
+    {
+        @Html.FieldFor(m => m.TrafficLogResponse.ResponseCode).AsDisabled()
+        
+        @Html.FieldFor(m => m.TrafficLogResponse.ResponseCodeDescription).AsDisabled()
+    
+        if (!String.IsNullOrEmpty(Model.TrafficLogResponse.RedirectLocation))
+	    {
+            @Html.FieldFor(m => m.TrafficLogResponse.RedirectLocation).AsDisabled().SetFieldWidth(FieldSpans.Full)
+        }
+    }
+}
+
+@if (Model.ApplicationLogs.Any())
+{
+    <hr/>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>Application Logs</h4></div>
+        <ul class="list-group">
+            @foreach (var item in Model.ApplicationLogs)
+            {
+                <li class="list-group-item"><a href="@Url.Action("Index", "ApplicationLog", new { TrackingGuid = item.TrackingGuid })">@item.Message</a></li>
+            }
+        </ul>
+
+    </div>
+}

@@ -1,0 +1,16 @@
+﻿.registries a {
+  display: inline-block;
+  background-color: white;
+  vertical-align: middle;
+  width: 200px;
+  height: 130px;
+  margin: 6px 10px 15px;
+  border: 5px solid #8f00ff;
+}
+.registries a:hover {
+  border-color: #cb89ff;
+}
+.registries a.kohls img {
+  margin-top: 45px;
+  width: 180px;
+}

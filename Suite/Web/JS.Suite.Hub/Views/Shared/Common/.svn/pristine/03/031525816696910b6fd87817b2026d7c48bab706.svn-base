@@ -1,0 +1,10 @@
+﻿@model JS.Suite.BusinessLogic.Templating.Models.Email.ConfirmEmailModel
+@{
+    Layout = "~/Views/Shared/Common/Templates/Email/_EmailLayout.cshtml";
+}
+<h2>@Localization.ThankYouForJoiningJumpingSalamander</h2>
+<p>@Localization.InOrderToReceiveEmailNotifications</p>
+<p><a href = "@Url.Action("ConfirmEmail", "Account", new { userId = Model.User.JSUserId, code = Model.ConfirmationToken }, protocol: Request.Url.Scheme)" >@Localization.ClickHereToConfirmYourEmailAddress</a></p>
+
+<p>@Localization.ThanksComma</p>
+<p>@Localization.ApplicationName</p>

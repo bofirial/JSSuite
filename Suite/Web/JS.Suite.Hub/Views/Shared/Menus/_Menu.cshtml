@@ -1,0 +1,51 @@
+﻿@model List<JS.Core.Web.Menu.MenuItem>
+
+<ul class="nav navbar-nav">
+
+    @foreach (var menuItem in Model)
+    {
+        string current;
+            
+        if (menuItem.ChildMenuItems != null)
+        {
+            current = "";
+            
+            if (menuItem.ChildMenuItems.Any(cmi => cmi.Name == ViewBag.CurrentMenuItem))
+            {
+                current = "active";
+            }
+            
+            <li class="dropdown @current">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Localization.ResourceManager.GetString(menuItem.Name)<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    @foreach (var childMenuItem in menuItem.ChildMenuItems)
+                    {
+                        current = "";
+
+                        if (ViewBag.CurrentMenuItem == childMenuItem.Name)
+                        {
+                            current = "active";
+                        }
+
+                        <li class="@current"><a href="@childMenuItem.Url">@Localization.ResourceManager.GetString(childMenuItem.Name)</a></li>
+                    }
+                </ul>
+
+            </li>
+        }
+        else
+        {
+            current = "";
+
+            if (ViewBag.CurrentMenuItem == menuItem.Name)
+            {
+                current = "active";
+            }
+
+            <li class="@current"><a href="@menuItem.Url">@Localization.ResourceManager.GetString(menuItem.Name)</a></li>
+        }
+    }
+</ul>
+
+
+

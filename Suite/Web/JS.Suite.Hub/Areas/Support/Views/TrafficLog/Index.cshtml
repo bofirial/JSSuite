@@ -1,0 +1,51 @@
+﻿@model TrafficLogRequest
+@using JS.Suite.DataAbstraction.JSSupport
+
+@using (Html.BeginForm("TrafficLogGridData", "TrafficLog", new { area = "Support" }, FormMethod.Post, new { role = "form", @class = "gridForm" }))
+{
+    <h2>Traffic Log</h2>
+    using (Html.CollapsiblePanel("Grid Filter", c => c))
+    {
+        using (Html.FieldGroup(g => g))
+        {
+            IEnumerable<SelectListItem> applicationSelectList = ViewBag.AvailableApplications;
+            
+            @Html.FieldFor(m => m.RequestedUrl)
+            @Html.FieldFor(m => m.Location)
+            @Html.FieldFor(m => m.BrowserVersion)
+            @Html.FieldFor(m => m.OperatingSystem)
+            @Html.FieldFor(m => m.ApplicationId).AsDropDown(applicationSelectList)
+            @Html.FieldFor(m => m.TrackingGuid)
+            @Html.FieldFor(m => m.InsertedOn_From)
+            @Html.FieldFor(m => m.InsertedOn_To)
+        }
+
+        using (Html.ButtonGroup(g => g))
+        {
+            @Html.Button("Search").AsSubmit()
+        }
+    }
+    @(Html.Grid(Model)
+        .Columns(columns =>
+        {
+            columns.Add(t => t.RequestedUrl).Label("Requested Url").WithTemplate(
+                template =>
+                    String.Format("<a class=\"detailLink\" data-modal-link=\"{1}\" href=\"javascript:void(0)\">{0}</a>",
+                        template.Property(g => g.RequestedUrl),
+                        Url.Action("DetailModal", new
+                        {
+                            trafficLogRequestId = template.Property(g => g.TrafficLogRequestId),
+                            trackingGuid = template.Property(g => g.TrackingGuid)
+                        })));
+            columns.Add(t => t.Location).CollapseLevel(GridColumnCollapseLevels.Tablet);
+            columns.Add(t => t.BrowserVersion).Label("Browser Version").CollapseLevel(GridColumnCollapseLevels.Phone);
+            columns.Add(t => t.OperatingSystem).Label("Operating System").CollapseLevel(GridColumnCollapseLevels.Tablet);
+            columns.Add(a => a.ApplicationName).Label("Application").CollapseLevel(GridColumnCollapseLevels.All);
+            columns.Add(a => a.RequestType).Label("Request Type").CollapseLevel(GridColumnCollapseLevels.All);
+            columns.Add(a => a.TrackingGuid).Label("Tracking Guid").CollapseLevel(GridColumnCollapseLevels.All);
+            columns.Add(a => a.JSUserName).Label("User Name").Sortable(false);
+            columns.Add(a => a.InsertedOnDisplay).Label("Inserted On").CollapseLevel(GridColumnCollapseLevels.Phone).WithSortName("InsertedOn");
+        })
+            .DefaultSort("InsertedOn", System.Data.SqlClient.SortOrder.Ascending)
+    )
+}

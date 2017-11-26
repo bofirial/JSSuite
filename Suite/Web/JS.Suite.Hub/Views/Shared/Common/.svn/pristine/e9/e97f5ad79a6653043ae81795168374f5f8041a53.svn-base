@@ -1,0 +1,5 @@
+﻿@model JS.Suite.BusinessLogic.Templating.Models.Email.ConfirmationTokenModel
+@{
+    Layout = null;
+}
+@Localization.ResetYourJumpingSalamanderPassword

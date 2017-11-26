@@ -1,0 +1,285 @@
+﻿/*******************************************
+ * Jumping Salamander Grid Module
+ *******************************************/
+
+(function (window, JS, $) {
+    if (JS) {
+        function Grid() {
+
+            var self = this,
+                gridDataUrl,
+                sortDirections = {
+                    ascending : "Ascending",
+                    descending : "Descending"
+                };
+
+            this.initializeRegion = function ($region) {
+
+                $('.grid', $region).each(function(i, grid) {
+
+                    var $grid = $(grid);
+                                        
+                    if (!$grid.isInitialized('Grid')) {
+
+                        var $table = $grid.find('table'),
+                            $gridForm = $grid.closest('form.gridForm'),
+                            gridDataUrl = $gridForm.attr('action'),
+                            footable,
+                            page = 1,
+                            pageSize = 10,
+                            sortBy = $grid.data('defaultSortBy'),
+                            sortDirection = $grid.data('defaultSortDirection');
+
+                        function getPropertyValueFromRowObj(propName, rowObj) {
+                            var propNameParts = propName.split('.'),
+                            propValue = rowObj;
+
+                            for (var j in propNameParts) {
+                                propValue = propValue[propNameParts[j]];
+                            }
+
+                            return propValue;
+                        }
+
+                        function getGridRow(rowObj) {
+                            var $row = $('<tr></tr>');
+
+                            $grid.find('th').each(function (i, th) {
+                                var $th = $(th),
+                                    propName = $th.data('propertyName'),
+                                    template = $th.data('columnTemplate'),
+                                    propValue = getPropertyValueFromRowObj(propName, rowObj);
+
+                                if (!template) {
+                                    $row.append($('<td>' + propValue + '</td>'));
+                                }
+                                else {
+                                    var regex = (/-~(.*?)~-/gim),
+                                        match = regex.exec(template),
+                                        filterRegex = (/\.~(.*?)~\./gim),
+                                        filter = $gridForm.serializeJSON(),
+                                        row = template;
+
+                                    while (match != null) {
+                                        var matchedPropertyValue = getPropertyValueFromRowObj(match[1], rowObj);
+
+                                        row = row.replace(match[0], matchedPropertyValue)
+
+                                        match = regex.exec(template);
+                                    }
+
+                                    match = filterRegex.exec(template);
+
+                                    while (match != null) {
+                                        var matchedPropertyValue = filter[match[1]];
+
+                                        row = row.replace(match[0], matchedPropertyValue)
+
+                                        match = filterRegex.exec(template);
+                                    }
+
+                                    $row.append($('<td>' + row + '</td>'));
+                                }
+                            });
+
+                            return $row;
+                        }
+
+                        function setFooter(data) {
+                            var $pager = $grid.find('.pagination'),
+                                numPages = Math.ceil(data.TotalResults / data.PageSize),
+                                numButtons = 5,
+                                firstButtonNum = data.PageNumber - 2,
+                                lastButtonNum,
+                                classVal = "",
+                                $resultCount = $grid.find('.resultCount');
+
+                            page = data.PageNumber;
+
+                            $pager.empty();
+
+                            if (data.PageNumber == 1) {
+                                classVal = "disabled";
+                            }
+                            else {
+                                classVal = "";
+                            }
+
+                            $pager.append('<li class="' + classVal + '"><a href="#" data-page-number="1">&laquo;</a></li>');
+
+                            if (numPages < numButtons) {
+                                numButtons = numPages;
+                            }
+
+                            if (data.PageNumber < 4) {
+                                firstButtonNum = 1;
+                            }
+                            else if (data.PageNumber > numPages - 3) {
+                                firstButtonNum = numPages - (numButtons - 1);
+                            }
+
+                            lastButtonNum = firstButtonNum + numButtons - 1;
+
+                            for (var i = firstButtonNum; i <= lastButtonNum; i++) {
+                                var num = i;
+
+                                if ((num == firstButtonNum && num != 1) || (num == lastButtonNum && num != numPages)) {
+                                    num = "...";
+                                }
+
+                                if (num == data.PageNumber) {
+                                    classVal = "active";
+                                }
+                                else {
+                                    classVal = "";
+                                }
+
+                                $pager.append('<li class="' + classVal + '"><a href="#" data-page-number="' + i + '">' + num + '</a></li>');
+                            }
+
+                            if (data.PageNumber == numPages) {
+                                classVal = "disabled";
+                            }
+                            else {
+                                classVal = "";
+                            }
+
+                            $pager.append('<li class="' + classVal + '"><a href="#" data-page-number="' + numPages + '">&raquo;</a></li>');
+
+                            var from = (data.PageNumber - 1) * data.PageSize + 1,
+                                to = data.PageNumber * data.PageSize;
+
+                            if (from > data.TotalResults) {
+                                from = data.TotalResults;
+                            }
+
+                            if (to > data.TotalResults) {
+                                to = data.TotalResults;
+                            }
+
+                            $resultCount.find('.from').empty().text(from);
+                            $resultCount.find('.to').empty().text(to);
+                            $resultCount.find('.total').empty().text(data.TotalResults);
+                        }
+
+                        function setGridData(data) {
+                            var currentRows = $grid.find('tbody > tr').not('.footable-row-detail');
+
+                            footable.toggleDetail(currentRows.filter('.footable-detail-show'));
+
+                            footable.removeRow(currentRows);
+
+                            for (var i in data.Results) {
+                                var $row = getGridRow(data.Results[i]);
+
+                                footable.appendRow($row);
+                            }
+
+                            setFooter(data);
+
+                            JS.initializeRegion($grid);
+
+                            $grid.stopLoadingIndicator();
+                        }
+
+                        function gridAjaxRequest(data) {
+                            $grid.startLoadingIndicator();
+
+                            data = setQueryContext(data);
+
+                            $.ajax({
+                                url: gridDataUrl,
+                                type: 'POST',
+                                data: data,
+                                success: setGridData
+                            });
+                        }
+
+                        function setQueryContext(data) {
+                            data.QueryContext = {};
+
+                            data.QueryContext.PageNumber = page;
+                            data.QueryContext.PageSize = pageSize;
+                            data.QueryContext.SortBy = sortBy;
+                            data.QueryContext.SortDirection = sortDirection;
+
+                            return data;
+                        }
+
+                        $table.footable();
+
+                        footable = $table.data('footable');
+
+                        setSortClasses();
+
+                        if (gridDataUrl) {
+
+                            gridAjaxRequest($grid.data('gridInitialFilter'));
+                        }
+                        else {
+                            throw "No Grid Data Url Found.  Are you missing a Grid Form?"
+                        }
+
+                        $gridForm.submit(function (e) {
+                            e.preventDefault();
+
+                            gridAjaxRequest($gridForm.serializeJSON());
+                        });
+
+                        function setSortClasses() {
+                            $grid.find('.footable-sorted, .footable-sorted-desc').removeClass('footable-sorted').removeClass('footable-sorted-desc');
+
+                            if (sortBy) {
+                                var $sortColumn = $('th.footable-sortable[data-sort-name="' + sortBy + '"]'),
+                                    sortClass = 'footable-sorted';
+
+                                if (sortDirection == sortDirections.descending) {
+                                    sortClass = 'footable-sorted-desc';
+                                }
+
+                                $sortColumn.addClass(sortClass);
+                            }
+                        }
+
+                        $grid.on('click', 'th.footable-sortable', function (e) {
+                            var $th = $(e.currentTarget);
+
+                            if ($th.hasClass('footable-sorted')) {
+                                sortBy = $th.data('sortName');
+                                sortDirection = sortDirections.descending;
+                            }
+                            else if ($th.hasClass('footable-sorted-desc')) {
+                                sortBy = null;
+                            }
+                            else {
+                                sortBy = $th.data('sortName');
+                                sortDirection = sortDirections.ascending;
+                            }
+
+                            setSortClasses();
+
+                            $gridForm.submit();
+                        });
+
+                        $grid.on('click', '.pagination li:not(".disabled"):not(".active") a', function (e) {
+                            var pageNum = $(e.currentTarget).data('pageNumber');
+
+                            page = pageNum;
+
+                            $gridForm.submit();
+                        });
+
+                        $grid.markInitialized('Grid');
+                    }
+                });
+ 
+            };
+        }
+
+        JS.registerModule("controls.grid", Grid);
+    }
+    else {
+        throw "JS Core Module Missing.  Unable to register the Grid Module";
+    }
+
+})(window, JS, $);

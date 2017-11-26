@@ -1,0 +1,40 @@
+﻿/*******************************************Console
+ * Jumping Salamander Initialization Module
+ *******************************************/
+
+(function (window, JS, $) {
+    if (JS) {
+        function Initialization() {
+
+            $.fn.extend({
+                //Marks Controls as Initialized
+                markInitialized: function (controlName) {
+                    return this.each(function () {
+                        var $this = $(this);
+
+                        $this.data('Initialization_' + controlName, true);
+                    });
+                },
+                //Checks if a Control is Marked as Initialized
+                isInitialized: function (controlName) {
+                    var areAllInitialized = true;
+
+                    this.each(function () {
+                        var $this = $(this);
+
+                        areAllInitialized = areAllInitialized && $this.data('Initialization_' + controlName) === true;
+                    });
+
+                    return areAllInitialized;
+                }
+            });
+
+        }
+
+        JS.registerModule("controls.initialization", Initialization);
+    }
+    else {
+        throw new "JS Core Module Missing.  Unable to register the Initialization Module";
+    }
+
+})(window, JS, $);

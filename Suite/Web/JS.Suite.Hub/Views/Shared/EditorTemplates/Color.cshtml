@@ -1,0 +1,24 @@
+﻿@model Color
+
+@using System.Drawing
+
+@{
+    //http://bradwilson.typepad.com/blog/2009/10/aspnet-mvc-2-templates-part-3-default-templates.html
+    //http://aspnetwebstack.codeplex.com/SourceControl/latest#src/System.Web.Mvc/Html/DefaultEditorTemplates.cs
+    
+    FieldData fieldData = (FieldData)Html.ViewData["FieldData"];
+
+    fieldData.HtmlAttributes.Add("type", "color");
+
+    fieldData.HtmlAttributes.AddClass("text-box");
+    fieldData.HtmlAttributes.AddClass("single-line");
+    
+    string value = null;
+    if (Model != null)
+    {
+        Color color = Model;
+        value = String.Format(System.Globalization.CultureInfo.InvariantCulture, "#{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
+    }
+}
+
+@Html.TextBox(String.Empty, value ?? Html.ViewContext.ViewData.TemplateInfo.FormattedModelValue, fieldData.HtmlAttributes)

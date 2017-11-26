@@ -1,0 +1,29 @@
+﻿@model bool?
+
+@{
+    //http://bradwilson.typepad.com/blog/2009/10/aspnet-mvc-2-templates-part-3-default-templates.html
+    //http://aspnetwebstack.codeplex.com/SourceControl/latest#src/System.Web.Mvc/Html/DefaultEditorTemplates.cs
+    
+    FieldData fieldData = (FieldData)Html.ViewData["FieldData"];
+}
+
+@if (Html.ViewContext.ViewData.ModelMetadata.IsNullableValueType)
+{
+    fieldData.HtmlAttributes.AddClass("list-box");
+    fieldData.HtmlAttributes.AddClass("tri-state");
+    
+    @Html.DropDownList(String.Empty, 
+        new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Not Set", Value = String.Empty, Selected = !Model.HasValue },
+                new SelectListItem { Text = "True", Value = "true", Selected = Model.HasValue && Model.Value },
+                new SelectListItem { Text = "False", Value = "false", Selected = Model.HasValue && !Model.Value },
+            },
+        fieldData.HtmlAttributes).ToHtmlString();    
+}
+else
+{
+    fieldData.HtmlAttributes.AddClass("check-box");
+    
+    @Html.CheckBox(String.Empty, Model ?? false, fieldData.HtmlAttributes).ToHtmlString();
+}

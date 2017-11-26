@@ -1,0 +1,31 @@
+﻿@model JS.Suite.Hub.Models.Account.UserBaseViewModel
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h2>@String.Format(Localization.AssociateYour_Account, ViewBag.LoginProvider)</h2>
+
+    @Html.ValidationSummaryAlert()
+
+    using (Html.FieldGroup(g => g))
+    {
+        @Html.FieldFor(m => m.UserName).WithFieldIcon(FAIcons.User).WithCustomLayoutClasses("col-sm-6", "col-sm-offset-3")
+    }
+
+    using (Html.ButtonGroup(g => g))
+    {
+        @Html.Button(Localization.Register).WithCustomLayoutClasses("col-sm-4", "col-sm-offset-4").AsSubmit()
+    }
+
+    using (Html.TextGroup(g => g))
+    {
+        <div class="col-xs-12 registerText">
+            <p>@Html.ActionLink(Localization.BackToTheLoginScreen, "Login")</p>
+        </div>
+    }
+}

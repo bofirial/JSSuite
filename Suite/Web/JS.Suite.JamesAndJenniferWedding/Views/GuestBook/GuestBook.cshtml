@@ -1,0 +1,26 @@
+﻿@model JS.Suite.JamesAndJenniferWedding.Models.GuestBook.GuestBookViewModel
+
+@*<h2>Sign the Guest Book</h2>
+
+    <form action="@Url.Action("Index")" method="post">
+
+        @Html.AntiForgeryToken()
+
+        @using (Html.FieldGroup(fieldGroup => fieldGroup))
+        {
+            @Html.FieldFor(m => m.NewWeddingComment.UserName)
+            @Html.FieldFor(m => m.NewWeddingComment.Email)
+            @Html.FieldFor(m => m.NewWeddingComment.Comment)
+        }
+
+        <input type="submit" value="Sign the Guest Book" />
+
+    </form>*@
+<a class="contactUs" href="mailto:contact@jenniferandjameswedding.com" target="_blank">Contact Us</a>
+
+<div class="guestBook">
+    @foreach (var comment in Model.WeddingComments)
+    {
+        @Html.Partial("_GuestBookEntry", comment)
+    }
+</div>

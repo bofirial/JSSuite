@@ -1,0 +1,474 @@
+﻿
+@import "../References.less";
+
+@appPickerSize: 280px;
+@appPickerSizeHover: 320px;
+
+@picker2Margin: 215px auto 0;
+@picker3Margin: 275px auto 0;
+@picker4Margin: 300px auto 0;
+@picker5Margin: 325px auto 0;
+
+//@picker2Margin: 215px auto 0;
+//@picker3Margin: 375px auto 0;
+//@picker4Margin: 400px auto 0;
+//@picker5Margin: 425px auto 0;
+
+@picker2Distance: 200px;
+@picker3Distance: 225px;
+@picker4Distance: 250px;
+@picker5Distance: 290px;
+
+@length2Degree: 360deg / 2;   //180deg;
+@length3Degree: 360deg / 3;   //120deg;
+@length4Degree: 360deg / 4;   //90deg;
+@length5Degree: 360deg / 5;   //72deg;
+
+@length2DegreeStart: 0;
+@length3DegreeStart: -90deg - @length3Degree + 360deg; //150deg;
+@length4DegreeStart: -90deg - @length4Degree + 360deg; //180deg;
+@length5DegreeStart: -90deg - @length5Degree + 360deg; //198deg;
+
+
+.appLinks {
+    z-index: 400;
+    display: block;
+    width: @appPickerSize;
+    height: @appPickerSize;
+    position: relative;
+    margin: 0 auto;
+
+
+    .applicationLink {
+        font-size: 0;
+        text-decoration: none;
+        display: block;
+        width: @appPickerSize;
+        height: @appPickerSize;
+        border-radius: 50%;
+        margin: 30px 0;
+
+        &:before {
+            content: attr(data-application-name);
+            text-align: center;
+            font-family: @titleFont;
+            color: @loginLayoutColor;
+            text-shadow: 2px 2px 2px @loginBackground;
+            letter-spacing: 2px;
+            font-size: 74px;
+            position: relative;
+            display: block;
+            left: 0;
+            right: 0;
+            top: 235px;
+            top: 0;
+            z-index: 500;
+        }
+
+        &:after {
+            content: " ";
+            display: block;
+            width: @appPickerSize;
+            height: @appPickerSize;
+            margin-top: -105px;
+            background-size: 225px;
+            background-repeat: no-repeat;
+            background-position: 25px 15px;
+        }
+
+        &.Games {
+            background: @gamesBg;
+            background-image: radial-gradient(@gamesBg, darken(@gamesBg, 30%));
+            border: solid 5px @gamesBg;
+
+            &:after {
+                background-image: url(/Content/Images/Login/Games_Picker.png);
+            }
+        }
+
+        &.Support {
+            background: @supportBg;
+            background-image: radial-gradient(@supportBg, darken(@supportBg, 30%));
+            border: solid 5px @supportBg;
+
+            &:after {
+                background-image: url(/Content/Images/Login/Support_Picker.png);
+            }
+        }
+
+        &.Collections {
+            background: @collectionsBg;
+            background-image: radial-gradient(@collectionsBg, darken(@collectionsBg, 30%));
+            border: solid 5px @collectionsBg;
+
+            &:after {
+                background-image: url(/Content/Images/Login/Collections_Picker.png);
+            }
+        }
+    }
+}
+
+@media (min-width: 680px ) and (min-height: 780px) {
+    .appLinks {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        &.length1 {
+            margin: 160px auto 0;
+        }
+
+        &.length2 {
+            margin: @picker2Margin;
+
+            .applicationLink.num1 {
+                -moz-transform: rotate(@length2Degree + @length2DegreeStart) translate(@picker2Distance) rotate(-(@length2Degree + @length2DegreeStart));
+                -ms-transform: rotate(@length2Degree + @length2DegreeStart) translate(@picker2Distance) rotate(-(@length2Degree + @length2DegreeStart));
+                -o-transform: rotate(@length2Degree + @length2DegreeStart) translate(@picker2Distance) rotate(-(@length2Degree + @length2DegreeStart));
+                -webkit-transform: rotate(@length2Degree + @length2DegreeStart) translate(@picker2Distance) rotate(-(@length2Degree + @length2DegreeStart));
+                transform: rotate(@length2Degree + @length2DegreeStart) translate(@picker2Distance) rotate(-(@length2Degree + @length2DegreeStart));
+            }
+
+            .applicationLink.num2 {
+                -moz-transform: rotate(@length2Degree * 2 + @length2DegreeStart) translate(@picker2Distance) rotate(-((@length2Degree * 2) + @length2DegreeStart));
+                -ms-transform: rotate(@length2Degree * 2 + @length2DegreeStart) translate(@picker2Distance) rotate(-((@length2Degree * 2) + @length2DegreeStart));
+                -o-transform: rotate(@length2Degree * 2 + @length2DegreeStart) translate(@picker2Distance) rotate(-((@length2Degree * 2) + @length2DegreeStart));
+                -webkit-transform: rotate(@length2Degree * 2 + @length2DegreeStart) translate(@picker2Distance) rotate(-((@length2Degree * 2) + @length2DegreeStart));
+                transform: rotate(@length2Degree * 2 + @length2DegreeStart) translate(@picker2Distance) rotate(-((@length2Degree * 2) + @length2DegreeStart));
+            }
+        }
+
+        &.length3 {
+            margin: @picker3Margin;
+
+            .applicationLink.num1 {
+                -moz-transform: rotate(@length3Degree + @length3DegreeStart) translate(@picker3Distance) rotate(-(@length3Degree + @length3DegreeStart));
+                -ms-transform: rotate(@length3Degree + @length3DegreeStart) translate(@picker3Distance) rotate(-(@length3Degree + @length3DegreeStart));
+                -o-transform: rotate(@length3Degree + @length3DegreeStart) translate(@picker3Distance) rotate(-(@length3Degree + @length3DegreeStart));
+                -webkit-transform: rotate(@length3Degree + @length3DegreeStart) translate(@picker3Distance) rotate(-(@length3Degree + @length3DegreeStart));
+                transform: rotate(@length3Degree + @length3DegreeStart) translate(@picker3Distance) rotate(-(@length3Degree + @length3DegreeStart));
+            }
+
+            .applicationLink.num2 {
+                -moz-transform: rotate(@length3Degree * 2 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 2) + @length3DegreeStart));
+                -ms-transform: rotate(@length3Degree * 2 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 2) + @length3DegreeStart));
+                -o-transform: rotate(@length3Degree * 2 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 2) + @length3DegreeStart));
+                -webkit-transform: rotate(@length3Degree * 2 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 2) + @length3DegreeStart));
+                transform: rotate(@length3Degree * 2 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 2) + @length3DegreeStart));
+            }
+
+            .applicationLink.num3 {
+                -moz-transform: rotate(@length3Degree * 3 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 3) + @length3DegreeStart));
+                -ms-transform: rotate(@length3Degree * 3 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 3) + @length3DegreeStart));
+                -o-transform: rotate(@length3Degree * 3 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 3) + @length3DegreeStart));
+                -webkit-transform: rotate(@length3Degree * 3 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 3) + @length3DegreeStart));
+                transform: rotate(@length3Degree * 3 + @length3DegreeStart) translate(@picker3Distance) rotate(-((@length3Degree * 3) + @length3DegreeStart));
+            }
+        }
+
+        &.length4 {
+            margin: @picker4Margin;
+
+            .applicationLink.num1 {
+                -moz-transform: rotate(@length4Degree + @length4DegreeStart) translate(@picker4Distance) rotate(-(@length4Degree + @length4DegreeStart));
+                -ms-transform: rotate(@length4Degree + @length4DegreeStart) translate(@picker4Distance) rotate(-(@length4Degree + @length4DegreeStart));
+                -o-transform: rotate(@length4Degree + @length4DegreeStart) translate(@picker4Distance) rotate(-(@length4Degree + @length4DegreeStart));
+                -webkit-transform: rotate(@length4Degree + @length4DegreeStart) translate(@picker4Distance) rotate(-(@length4Degree + @length4DegreeStart));
+                transform: rotate(@length4Degree + @length4DegreeStart) translate(@picker4Distance) rotate(-(@length4Degree + @length4DegreeStart));
+            }
+
+            .applicationLink.num2 {
+                -moz-transform: rotate(@length4Degree * 2 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 2) + @length4DegreeStart));
+                -ms-transform: rotate(@length4Degree * 2 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 2) + @length4DegreeStart));
+                -o-transform: rotate(@length4Degree * 2 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 2) + @length4DegreeStart));
+                -webkit-transform: rotate(@length4Degree * 2 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 2) + @length4DegreeStart));
+                transform: rotate(@length4Degree * 2 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 2) + @length4DegreeStart));
+            }
+
+            .applicationLink.num3 {
+                -moz-transform: rotate(@length4Degree * 3 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 3) + @length4DegreeStart));
+                -ms-transform: rotate(@length4Degree * 3 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 3) + @length4DegreeStart));
+                -o-transform: rotate(@length4Degree * 3 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 3) + @length4DegreeStart));
+                -webkit-transform: rotate(@length4Degree * 3 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 3) + @length4DegreeStart));
+                transform: rotate(@length4Degree * 3 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 3) + @length4DegreeStart));
+            }
+
+            .applicationLink.num4 {
+                -moz-transform: rotate(@length4Degree * 4 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 4) + @length4DegreeStart));
+                -ms-transform: rotate(@length4Degree * 4 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 4) + @length4DegreeStart));
+                -o-transform: rotate(@length4Degree * 4 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 4) + @length4DegreeStart));
+                -webkit-transform: rotate(@length4Degree * 4 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 4) + @length4DegreeStart));
+                transform: rotate(@length4Degree * 4 + @length4DegreeStart) translate(@picker4Distance) rotate(-((@length4Degree * 4) + @length4DegreeStart));
+            }
+        }
+
+        &.length5 {
+            margin: @picker5Margin;
+
+            .applicationLink.num1 {
+                -moz-transform: rotate(@length5Degree + @length5DegreeStart) translate(@picker5Distance) rotate(-(@length5Degree + @length5DegreeStart));
+                -ms-transform: rotate(@length5Degree + @length5DegreeStart) translate(@picker5Distance) rotate(-(@length5Degree + @length5DegreeStart));
+                -o-transform: rotate(@length5Degree + @length5DegreeStart) translate(@picker5Distance) rotate(-(@length5Degree + @length5DegreeStart));
+                -webkit-transform: rotate(@length5Degree + @length5DegreeStart) translate(@picker5Distance) rotate(-(@length5Degree + @length5DegreeStart));
+                transform: rotate(@length5Degree + @length5DegreeStart) translate(@picker5Distance) rotate(-(@length5Degree + @length5DegreeStart));
+            }
+
+            .applicationLink.num2 {
+                -moz-transform: rotate(@length5Degree * 2 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 2) + @length5DegreeStart));
+                -ms-transform: rotate(@length5Degree * 2 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 2) + @length5DegreeStart));
+                -o-transform: rotate(@length5Degree * 2 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 2) + @length5DegreeStart));
+                -webkit-transform: rotate(@length5Degree * 2 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 2) + @length5DegreeStart));
+                transform: rotate(@length5Degree * 2 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 2) + @length5DegreeStart));
+            }
+
+            .applicationLink.num3 {
+                -moz-transform: rotate(@length5Degree * 3 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 3) + @length5DegreeStart));
+                -ms-transform: rotate(@length5Degree * 3 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 3) + @length5DegreeStart));
+                -o-transform: rotate(@length5Degree * 3 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 3) + @length5DegreeStart));
+                -webkit-transform: rotate(@length5Degree * 3 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 3) + @length5DegreeStart));
+                transform: rotate(@length5Degree * 3 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 3) + @length5DegreeStart));
+            }
+
+            .applicationLink.num4 {
+                -moz-transform: rotate(@length5Degree * 4 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 4) + @length5DegreeStart));
+                -ms-transform: rotate(@length5Degree * 4 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 4) + @length5DegreeStart));
+                -o-transform: rotate(@length5Degree * 4 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 4) + @length5DegreeStart));
+                -webkit-transform: rotate(@length5Degree * 4 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 4) + @length5DegreeStart));
+                transform: rotate(@length5Degree * 4 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 4) + @length5DegreeStart));
+            }
+
+            .applicationLink.num5 {
+                -moz-transform: rotate(@length5Degree * 5 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 5) + @length5DegreeStart));
+                -ms-transform: rotate(@length5Degree * 5 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 5) + @length5DegreeStart));
+                -o-transform: rotate(@length5Degree * 5 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 5) + @length5DegreeStart));
+                -webkit-transform: rotate(@length5Degree * 5 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 5) + @length5DegreeStart));
+                transform: rotate(@length5Degree * 5 + @length5DegreeStart) translate(@picker5Distance) rotate(-((@length5Degree * 5) + @length5DegreeStart));
+            }
+        }
+
+        .applicationLink {
+            position: absolute;
+            -moz-transition: width 1.0s ease, height 1.0s ease, margin 1.0s ease;
+            -o-transition: width 1.0s ease, height 1.0s ease, margin 1.0s ease;
+            -webkit-transition: width 1.0s ease, height 1.0s ease, margin 1.0s ease;
+            transition: width 1.0s ease, height 1.0s ease, margin 1.0s ease;
+            margin: 0;
+
+
+            &:hover {
+                width: @appPickerSizeHover;
+                height: @appPickerSizeHover;
+                margin: -20px;
+                -moz-animation-name: grow;
+                -o-animation-name: grow;
+                -webkit-animation-name: grow;
+                animation-name: grow;
+                -moz-animation-timing-function: linear;
+                -o-animation-timing-function: linear;
+                -webkit-animation-timing-function: linear;
+                animation-timing-function: linear;
+                -moz-animation-iteration-count: 1;
+                -o-animation-iteration-count: 1;
+                -webkit-animation-iteration-count: 1;
+                animation-iteration-count: 1;
+                -moz-animation-duration: .5s;
+                -o-animation-duration: .5s;
+                -webkit-animation-duration: .5s;
+                animation-duration: .5s;
+
+                &:after {
+                    background-size: 250px;
+                    background-position: 30px 20px;
+                    -moz-animation-name: salamander;
+                    -o-animation-name: salamander;
+                    -webkit-animation-name: salamander;
+                    animation-name: salamander;
+                    -moz-animation-timing-function: linear;
+                    -o-animation-timing-function: linear;
+                    -webkit-animation-timing-function: linear;
+                    animation-timing-function: linear;
+                    -moz-animation-iteration-count: 1;
+                    -o-animation-iteration-count: 1;
+                    -webkit-animation-iteration-count: 1;
+                    animation-iteration-count: 1;
+                    -moz-animation-duration: .5s;
+                    -o-animation-duration: .5s;
+                    -webkit-animation-duration: .5s;
+                    animation-duration: .5s;
+                }
+
+                &:before {
+                    color: @titleColorHover;
+                }
+            }
+
+            &:before {
+                -moz-transition: color 1.0s ease;
+                -o-transition: color 1.0s ease;
+                -webkit-transition: color 1.0s ease;
+                transition: color 0.5s ease;
+            }
+
+            &:after {
+                -moz-transition: background-size 1.0s ease, background-position 1.0s ease;
+                -o-transition: background-size 1.0s ease, background-position 1.0s ease;
+                -webkit-transition: background-size 1.0s ease, background-position 1.0s ease;
+                transition: background-size 1.0s ease, background-position 1.0s ease;
+            }
+            //&.Games {
+            //    -moz-transform: rotate(@gamesDegrees) translate(@gamesDistance) rotate(-@gamesDegrees);
+            //    -ms-transform: rotate(@gamesDegrees) translate(@gamesDistance) rotate(-@gamesDegrees);
+            //    -o-transform: rotate(@gamesDegrees) translate(@gamesDistance) rotate(-@gamesDegrees);
+            //    -webkit-transform: rotate(@gamesDegrees) translate(@gamesDistance) rotate(-@gamesDegrees);
+            //    transform: rotate(@gamesDegrees) translate(@gamesDistance) rotate(-@gamesDegrees);
+            //}
+            //
+            //&.Support {
+            //    -moz-transform: rotate(@supportDegrees) translate(@supportDistance) rotate(-@supportDegrees);
+            //    -ms-transform: rotate(@supportDegrees) translate(@supportDistance) rotate(-@supportDegrees);
+            //    -o-transform: rotate(@supportDegrees) translate(@supportDistance) rotate(-@supportDegrees);
+            //    -webkit-transform: rotate(@supportDegrees) translate(@supportDistance) rotate(-@supportDegrees);
+            //    transform: rotate(@supportDegrees) translate(@supportDistance) rotate(-@supportDegrees);
+            //}
+            //
+            //&.Collections {
+            //    -moz-transform: rotate(@collectionsDegrees) translate(@collectionsDistance) rotate(-@collectionsDegrees);
+            //    -ms-transform: rotate(@collectionsDegrees) translate(@collectionsDistance) rotate(-@collectionsDegrees);
+            //    -o-transform: rotate(@collectionsDegrees) translate(@collectionsDistance) rotate(-@collectionsDegrees);
+            //    -webkit-transform: rotate(@collectionsDegrees) translate(@collectionsDistance) rotate(-@collectionsDegrees);
+            //    transform: rotate(@collectionsDegrees) translate(@collectionsDistance) rotate(-@collectionsDegrees);
+            //}
+        }
+    }
+}
+
+@keyframes grow {
+    0% {
+        width: @appPickerSize;
+        height: @appPickerSize;
+        margin: 0;
+    }
+
+    40% {
+        width: 350px;
+        height: 350px;
+        margin: -40px;
+    }
+
+    100% {
+        width: @appPickerSizeHover;
+        height: @appPickerSizeHover;
+        margin: -20px;
+    }
+}
+
+@-moz-keyframes grow {
+    0% {
+        width: @appPickerSize;
+        height: @appPickerSize;
+        margin: 0;
+    }
+
+    40% {
+        width: 350px;
+        height: 350px;
+        margin: -40px;
+    }
+
+    100% {
+        width: @appPickerSizeHover;
+        height: @appPickerSizeHover;
+        margin: -20px;
+    }
+}
+
+@-webkit-keyframes grow {
+    0% {
+        width: @appPickerSize;
+        height: @appPickerSize;
+        margin: 0;
+    }
+
+    40% {
+        width: 350px;
+        height: 350px;
+        margin: -40px;
+    }
+
+    100% {
+        width: @appPickerSizeHover;
+        height: @appPickerSizeHover;
+        margin: -20px;
+    }
+}
+
+@keyframes salamander {
+    0% {
+        background-size: 225px;
+        background-position: 25px 15px;
+        width: @appPickerSize;
+        height: @appPickerSize;
+    }
+
+    40% {
+        background-size: 275px;
+        background-position: 35px 25px;
+        width: @appPickerSizeHover;
+        height: @appPickerSizeHover;
+    }
+
+    100% {
+        background-size: 250px;
+        background-position: 30px 20px;
+        width: @appPickerSize;
+        height: @appPickerSize;
+    }
+}
+
+@-moz-keyframes salamander {
+    0% {
+        background-size: 225px;
+        background-position: 25px 15px;
+        width: @appPickerSize;
+        height: @appPickerSize;
+    }
+
+    40% {
+        background-size: 275px;
+        background-position: 35px 25px;
+        width: @appPickerSizeHover;
+        height: @appPickerSizeHover;
+    }
+
+    100% {
+        background-size: 250px;
+        background-position: 30px 20px;
+        width: @appPickerSize;
+        height: @appPickerSize;
+    }
+}
+
+@-webkit-keyframes salamander {
+    0% {
+        background-size: 225px;
+        background-position: 25px 15px;
+        width: @appPickerSize;
+        height: @appPickerSize;
+    }
+
+    40% {
+        background-size: 275px;
+        background-position: 35px 25px;
+        width: @appPickerSizeHover;
+        height: @appPickerSizeHover;
+    }
+
+    100% {
+        background-size: 250px;
+        background-position: 30px 20px;
+        width: @appPickerSize;
+        height: @appPickerSize;
+    }
+}
